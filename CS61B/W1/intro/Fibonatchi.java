@@ -20,7 +20,7 @@ public class Fibonatchi {
 
   public static void main(String[] args) {
     int n = 9;
-    int f0 = 7; int f1 = 8; int k = 7;
+    int f0 = 7; int f1 = 8; int k = 9;
     System.out.println(fibo2(n, k, f0, f1));
   }
     
