@@ -15,12 +15,20 @@ public class Mystrey {
     return answer; 
   }
 
+  public static void mystrey2(int [] inputArray) { 
+    int index = 0;
+    while(index < inputArray.length){ 
+      int targetIndex = mystrey(inputArray, index);
+      int temp = inputArray[targetIndex];
+      inputArray[targetIndex] = inputArray[index]; 
+      inputArray[index] = temp; 
+      index = index + 1;
+    }
 
-  public static void main(String [] args) { 
-    int [] inputArray = {3, 0, 4, 6, 3};
-    int k  = 2;
-    System.out.println(mystrey(inputArray, k)); 
+  }
 
+
+  public static void main(String [] args) {
   }
 }
 
