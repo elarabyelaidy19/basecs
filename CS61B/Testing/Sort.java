@@ -1,6 +1,8 @@
 class Sort {
     public static void sort( String[] x) { 
-        // 1- find smallest 
+        // 1- find smallest  
+        // 2- sort
+        // 3- swap 
     }
 
     public static String findSmallest(String[] input) { 
