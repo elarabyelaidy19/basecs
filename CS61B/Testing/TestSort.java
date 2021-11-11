@@ -1,4 +1,3 @@
-
 public class TestSort {
     public static void sortTest() { 
         String[] input = {"i", "have", "an", "egg"}; 
