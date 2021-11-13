@@ -1,9 +1,9 @@
 public interface List<Item> {
     public void addLast(Item x);  
 
-    public void getLast(); 
+    public Item getLast(); 
 
-    public void removeLast(); 
+    public Item removeLast(); 
 
     public void addFirst(Item x); 
 
