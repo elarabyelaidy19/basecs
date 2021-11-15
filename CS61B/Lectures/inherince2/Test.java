@@ -1,3 +1,5 @@
 public class Test { 
-    String x = "Test"; 
+    String x = "Test";  
+    int ex = 15;  
+    
 }
