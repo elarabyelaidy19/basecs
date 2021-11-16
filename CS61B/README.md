@@ -7,9 +7,6 @@
 - [X] Lecture seven 
 - [X] Lecture Eight  
 - [X] Lecture Nine
-- [] Lecture Ten 
-- [] Lecture Elven  
-- [] Lecture Twelve
-- [] Lecture Therteeen
+- [X] Lecture Ten 
 
 
