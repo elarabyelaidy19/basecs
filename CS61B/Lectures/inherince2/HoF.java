@@ -3,7 +3,8 @@ public class HoF {
         return f.apply(f.apply(x)); 
     }
 
-    public static void main(String[] args) {
-        System.out.println(doTwice(new TenX, 10));
+    public static void main(String[] args) { 
+        IntUnaryFuction x = new TenX();
+        System.out.println(doTwice(x, 10));
     }
 }
