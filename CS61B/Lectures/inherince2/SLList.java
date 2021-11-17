@@ -3,7 +3,7 @@ public class SLList<Blorb> implements List<Blorb> {
         public Blorp item;     /* Equivalent of first */
         public Node next; /* Equivalent of rest */
 
-        public Node(Blorp i, Node h) {
+        public Node(Blorb i, Node h) {
             item = i;
             next = h;
         }
@@ -128,5 +128,23 @@ public class SLList<Blorb> implements List<Blorb> {
             System.out.println(current.data);
             current = current.next;
         }
+    }
+
+    @Override
+    public void addLast(Blorb x) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void insert(Blorb x, int position) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void addFirst(Blorb x) {
+        // TODO Auto-generated method stub
+        
     }
 }

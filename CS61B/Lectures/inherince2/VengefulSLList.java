@@ -1,4 +1,4 @@
-public class ExSLList<Item> extends SLList<Item> { 
+public class VengefulSLList<Item> extends SLList<Item> { 
     // SLList to store deleted items 
     SLList<Item> deletedItems;
 

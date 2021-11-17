@@ -8,5 +8,6 @@
 - [X] Lecture Eight  
 - [X] Lecture Nine
 - [X] Lecture Ten 
+- [x] lecture eleven 
 
 
