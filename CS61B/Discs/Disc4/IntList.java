@@ -11,7 +11,8 @@ public class IntList {
         if(lst == nulll || lst.rest == nulll) { 
             return;
         }
-        // lst point to even pointer last even pointer point to second elemnt
+        // lst point to even pointer last even pointer point to second elemnt 
+        // second rever to the first odd ele
         IntList odds = lst.rest; 
         IntList second = lst.rest;
         while(lst.rest != null && odds.rest != null) { 
@@ -23,5 +24,21 @@ public class IntList {
         lst.rest = second;
 
 
+    }
+
+    public static IntList[] partition(IntList lst, int k) { 
+        IntList array = new IntList[k]; 
+        int index = 0; 
+        IntList L = revers(lst); 
+        while(L != null) { 
+            IntList prevAtIndex = array[index]; 
+            IntList next = L.rest; 
+            array[index] = L; 
+            array[index].rest = prevAtIndex; 
+            L = next; 
+            index = (index + 1) % array.length;
+        }  
+
+        return array;
     }
 }
