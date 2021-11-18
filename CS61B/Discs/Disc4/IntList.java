@@ -11,7 +11,7 @@ public class IntList {
         if(lst == nulll || lst.rest == nulll) { 
             return;
         }
-        // lst point to even pointer
+        // lst point to even pointer last even pointer point to second elemnt
         IntList odds = lst.rest; 
         IntList second = lst.rest;
         while(lst.rest != null && odds.rest != null) { 
