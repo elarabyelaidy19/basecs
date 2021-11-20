@@ -1,8 +1,9 @@
 # CS 61B Week 04
 
 ## Extends, Casting, Higher Order Functions
+- 
+- Although interfaces provide us a way to define a hierarchical relationship, the `extends` key word let us define a hierarchical relationship between classes. 
 
-Although interfaces provide us a way to define a hierarchical relationship, the `extends` key word let us define a hierarchical relationship between classes.
 
 If we want to define a new class which have all methods in the `SLList` but new ones such as `RotatingRight`.
 

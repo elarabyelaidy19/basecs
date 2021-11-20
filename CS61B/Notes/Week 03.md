@@ -268,9 +268,12 @@ To allow IntelliJ to automatically run the tests, we could modify our test struc
 * Remove our main method from the `TestSort` class.
 
 
-## Inheritance, Implements
+## Inheritance, Implements 
+
+- 
 
 ### Method Overloading
+- when there is many methods with the same name and return type but diffrent signature(parameters).int, float. 
 
 Suppose we have the method below, which will return the longest string in a `SLList`.
 
@@ -380,3 +383,10 @@ When running the code, if `foo`'s dynamic type **override** the `bar` method in 
 
 * Interface inheritance (what): Simply tells what the subclasses should be able to do.
 * Implementation inheritance (how): Tells the subclasses how they should behave.
+
+
+## Interface & Classes  
+- Interface implemented by classes, they describe the ability that can apply to many classes 
+- Interface like abstract classes, they do not implemnts the methods they specify 
+- one class can implemnts many interface. 
+- class can extend only one class, class can extended by many classes.

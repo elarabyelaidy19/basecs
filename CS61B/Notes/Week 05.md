@@ -1,4 +1,46 @@
-# CS 61B Week 05
+# CS 61B Week 05 
+
+## Command ling programming, Git 
+- Command line Args is the way that provide input to program in the command line. 
+- args is an array of values.
+
+```java 
+
+public class ArgSum { 
+  public static void main(String[] args) { 
+    int index = 0; 
+    int sum  = 0; 
+
+    while(index < args.length) { 
+      sum += Integer.parseInt(args[index]); 
+      index += 1; 
+    }
+
+    System.out.println(sum);
+  }
+}
+```
+
+
+### Git 
+- C code is compiled into binary which is does'nt require intetrpereter. 
+- ``` char **argv ``` is equal to String[] args. 
+- Git depends on Maps, Hashs, File I/0, Graphs. 
+- Evry time you make change git store a **Copy** of the entire reop in a file called .git.
+
+#### Redundancy 
+- We only store files that changed. 
+- each commit is a map. foreach filename it maps that filename to  a version number. 
+- we use the last commits versions. 
+- if we revert to the same version of file we doesn't Store the new file. 
+##### avoid redundancy with Hashing 
+- Use time and date as the version number!  
+- No not the time or the date it's SHA-1 hashing algorithm 
+- SHA-1 is a deterministic function of the file content, tow identical files will have the same git-SHA1 number. 
+- 160 bits long, is the hash of the (File size, a zero, file content).
+- git hash-object 'file-name' give the hash of the file from the CL.
+- git computes SHA1 for the file, create folder with name of first 2 digits, sore the content in the file with name 'rest of hash' in a copressed format.
+- 
 
 ## Asymptotics1
 
