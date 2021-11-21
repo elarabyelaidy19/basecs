@@ -39,9 +39,16 @@ public class ArgSum {
 - SHA-1 is a deterministic function of the file content, tow identical files will have the same git-SHA1 number. 
 - 160 bits long, is the hash of the (File size, a zero, file content).
 - git hash-object 'file-name' give the hash of the file from the CL.
-- git computes SHA1 for the file, create folder with name of first 2 digits, sore the content in the file with name 'rest of hash' in a copressed format.
-- 
+- git computes SHA1 for the file, create folder in .git/objects with name of first 2 digits, sore the content in the file with name 'rest of hash' in a copressed format.
+- Objects 
+- Collision maybe will be there two files with the same hash but it's almost imposible. 
+- inject malicious code into file would result in change in the git-sha1 hash. 
 
+##### Serializing and storing 
+- implements serializable to store arbitary objects. 
+
+#### Branching 
+- 
 ## Asymptotics1
 
 ### Writing Efficient Programs
