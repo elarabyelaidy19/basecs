@@ -98,7 +98,8 @@ public static boolean dup2(int[] A) {
 Measure in Seconds using the following tools:
 
 *  Physical stopwatch.
-* Unix has a built in time command that measures execution time.
+* Unix has a built in time command that measures execution time. 
+- ``` time proj ```
 * Princeton Standard library has a Stopwatch class.
 
 Advantage: Easy to measure and interpret.
