@@ -1,6 +1,8 @@
 public class DMSList { 
     private IntNode sentinel;
-    public DMSList() { sentinel = new IntNode(-1000, new LsatNode); } 
+    public DMSList() { 
+        sentinel = new IntNode(-1000, new LsatNode()); 
+    }
 
     public class IntNode { 
         public int item; 
