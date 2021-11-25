@@ -22,7 +22,8 @@ public class OHQueue implements Iterable<OHRequest> {
         OHRequest s2 =new OHRequest("help", "Hug", s3);
         OHRequest s1 =new OHRequest("no I haven't tried stepping through", "Itai", s2);
         
-        OHQueue q = new OHQueue(s1);
+        OHQueue q = new OHQueue(s1); 
+        
         for(OHRequest o : q) { 
             System.out.println(o.name); 
         }
