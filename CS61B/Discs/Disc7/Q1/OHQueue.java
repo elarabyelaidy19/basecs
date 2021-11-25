@@ -1,4 +1,4 @@
-package Disc7;
+package Disc7.Q1;
 
 import java.util.Iterator;
 
