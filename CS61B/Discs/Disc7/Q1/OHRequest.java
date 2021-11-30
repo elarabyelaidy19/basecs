@@ -1,4 +1,4 @@
-package Disc7;
+package Disc7.Q1;
 
 public class OHRequest {
     public String name; 
