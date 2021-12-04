@@ -40,7 +40,7 @@ public interface DisjointSets {
 }
 ```
 
-We will implement this interface to achieve these goals: 
+We will implement this interface to achieve these goals:          
 
 * Number of elements N can be huge.
 * Number of method calls M can be huge.
@@ -349,4 +349,4 @@ We can just take the right-most node in the left subtree or the left-most node i
 
 We can use BST to implement `Set` ADT, which is better than using ArraySet, since the worst-case runtime cost `log N` is faster than `N`.
 
-We can also implement `Map` with BST by having each node hold (key,value) pairs. We will compare each element's key to determine where to place it within our tree.
+We can also implement `Map` with BST by having each node hold (key,value) pairs. We will compare each element's key to determine where to place it within our tree.     
