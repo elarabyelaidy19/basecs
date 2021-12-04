@@ -16,7 +16,7 @@ public class FilteredList<T> implements Iterable<T> {
         int index; 
 
         public FilteredListIterator() { 
-            index = 0; 
+            index = 0;  
             moveIndex();
              
         }
