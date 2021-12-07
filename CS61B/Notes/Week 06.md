@@ -60,7 +60,13 @@ Very inituitive way, but quite slow for large N.
 
 2. List of integers where ith entry gives set number.
 
-connect(p, q): Change entries that equal id[p] to id[q]
+connect(p, q): Change entries that equal id[p] to id[q]  
+
+`{0, 1, 2, 4}, {3, 5}, {6}`
+
+![quick-union](https://joshhug.gitbooks.io/hug61b/content/chap9/9.2.1.png)
+
+![quick-union](https://joshhug.gitbooks.io/hug61b/content/chap9/9.2.2.png )     
 
 ```java
 public class QuickFindDS implements DisjointSets {
@@ -91,15 +97,25 @@ public class QuickFindDS implements DisjointSets {
 
 However, connecting is still slow.
 
-### Quick Union
+### Quick Union   
 
 Instead of using random number to represent the index of sets, we could let each entry to be its parent, which results in a tree-like shape.
 
 To connect two items, simply change the root of one item to the root of another item.
 
-However, this method is still slow since the tree might be quite tall and the cost of the worst case is proportional to the height. 
+However, this method is still slow since the tree might be quite tall and the cost of the worst case is proportional to the height.  
 
-```java  
+`{0, 1, 2, 4}, {3, 5}, {6}`
+
+![quick-union](https://joshhug.gitbooks.io/hug61b/content/chap9/9.3.1.png)
+
+
+`connect(5, 2)`
+
+![quick-union](https://joshhug.gitbooks.io/hug61b/content/chap9/9.3.2.png)
+
+
+```java        
 public QuikUnionDS(int num) { 
         parent = new int[num]; 
         for(int i =0 ; i < parent.length; i+= 1) { 
@@ -133,7 +149,11 @@ We could modify Quick Union to avoid tall trees: Track tree size and link root o
 
 Thus, the `connect` and `isConnected` operation will never be slower than `log N`, which is fast enough for most programs.
 
-Although we could track the height instead of weight, we will find out that the performance is similar. 
+Although we could track the height instead of weight, we will find out that the performance is similar.  
+
+![weighted-quick-union](https://joshhug.gitbooks.io/hug61b/content/chap9/9.4.1.png) 
+
+![weighted-quick-union](https://joshhug.gitbooks.io/hug61b/content/chap9/9.4.2.png)
 
 
 
