@@ -47,7 +47,7 @@ We will implement this interface to achieve these goals:
 *  Calls to methods may be interspersed
 
 Naive Approach: Record all the connections in a data structure, and do some iteration to see if one thing can be reached from each other.
-
+List<Set<Integer>>
 Better Approaach: Ignore how things are connected, and only record sets that each belongs to.
 
 ### Quick Find
@@ -97,7 +97,35 @@ Instead of using random number to represent the index of sets, we could let each
 
 To connect two items, simply change the root of one item to the root of another item.
 
-However, this method is still slow since the tree might be quite tall and the cost of the worst case is proportional to the height.
+However, this method is still slow since the tree might be quite tall and the cost of the worst case is proportional to the height. 
+
+```java  
+public QuikUnionDS(int num) { 
+        parent = new int[num]; 
+        for(int i =0 ; i < parent.length; i+= 1) { 
+            parent[i] = i; 
+        }
+    }
+
+    private static int find(int p) { 
+        while(parent[p] > 0) { 
+           p = parent[p];
+        }
+        return p;
+    }
+
+    public void connect(int p, int q) { 
+        int i = find(p); 
+        int j = find(q); 
+        parent[i] = j; 
+    }
+
+    public boolean isConnected(int p, int q) { 
+        return (find(p) == find(q));        
+    }
+
+
+```
 
 ### Weighted Quick Union
 
@@ -105,7 +133,9 @@ We could modify Quick Union to avoid tall trees: Track tree size and link root o
 
 Thus, the `connect` and `isConnected` operation will never be slower than `log N`, which is fast enough for most programs.
 
-Although we could track the height instead of weight, we will find out that the performance is similar.
+Although we could track the height instead of weight, we will find out that the performance is similar. 
+
+
 
 ## Asymptotics II
 
@@ -223,7 +253,19 @@ An Abstract Data Type (ADT) is defined only by its operations, not by its implem
 
 **Lists**: an ordered set of elements
 * add(int i): adds an element
-* int get(int i): gets element at index i
+* int get(int i): gets element at index i 
+
+**GrabBag** 
+* insert(int x): Inserts x into the grab bag.
+* int remove(): Removes a random item from the bag.
+* int sample(): Samples a random item from the bag (without removing!)
+* int size(): Number of items in the bag.
+
+
+**Queues**: Structures that support first-in first-out retrieval of elements
+* enqueue(int x): puts x on the end of the queue
+* int dequeue(): takes the element at the front of the queue
+
 
 **Sets**: an unordered set of unique elements (no repeats)
 * add(int i): adds an element
@@ -285,7 +327,7 @@ private class BST<Key> {
 * Otherwise, move to the child at left.
 * Repeat recursively until we find the item or we get to the leaf of the tree, which means that the tree does not contain the item we want to find.
 
-```
+```java
 static BST find(BST T, Key sk) {
    if (T == null)
       return null;
@@ -307,7 +349,7 @@ We always insert at a leaf node.
 * Search the item in the tree. If we find it, then we don't do anything.
 * We can just add the new element to either the left or right of the leaf, preserving the BST property.
 
-```
+```java
 static BST insert(BST T, Key ik) {
   if (T == null)
     return new BST(ik);
