@@ -89,7 +89,7 @@ public class QuickFindDS implements DisjointSets {
       for (int i = 0; i < id.length; i++) {
          if (id[i] == pid) {
             id[i] = qid;
-         }
+         }     
       }
     }
 } 
@@ -101,7 +101,9 @@ However, connecting is still slow.
 
 Instead of using random number to represent the index of sets, we could let each entry to be its parent, which results in a tree-like shape.
 
-To connect two items, simply change the root of one item to the root of another item.
+To connect two items  
+* Find the root of the two items.
+* simply change the root of one item to the root of another item.
 
 However, this method is still slow since the tree might be quite tall and the cost of the worst case is proportional to the height.  
 
@@ -124,10 +126,10 @@ public QuikUnionDS(int num) {
     }
 
     private static int find(int p) { 
-        while(parent[p] > 0) { 
+         while(parent[p] > 0) { 
            p = parent[p];
-        }
-        return p;
+         }
+         return p;
     }
 
     public void connect(int p, int q) { 
@@ -145,7 +147,9 @@ public QuikUnionDS(int num) {
 
 ### Weighted Quick Union
 
-We could modify Quick Union to avoid tall trees: Track tree size and link root of smaller tree to the larger one.
+We could modify Quick Union to avoid tall trees: Track tree size and link root of smaller tree to the larger one. 
+assing root of smaller tree to the root of larger tree. 
+root tree take negative value to indicate the size of the tree.
 
 Thus, the `connect` and `isConnected` operation will never be slower than `log N`, which is fast enough for most programs.
 
