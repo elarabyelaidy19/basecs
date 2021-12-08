@@ -169,7 +169,7 @@ public boolean dup1(int[] A) {
 	for (int i = 0; i < N; i += 1)
 	for (int j = i + 1; j < N; j += 1)
 		if (A[i] == A[j])
-			return true;
+			return true;   
 	return false;
 }
 ```

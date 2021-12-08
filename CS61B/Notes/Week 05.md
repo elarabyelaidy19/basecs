@@ -160,9 +160,10 @@ Whereas Big Theta means "equals", Big O means "less than or equal". (The order o
 
 **Asymptotics** allow us to evaluate the performance of our programs using math. We ignore all constants and only care about the value with reference to the input (usually defined as N)
 
-**Big O** - The upper bound in terms of the input. In other words, if a function has big O in f(x), we say that it could grow at most as fast as f(x), but it could grow more slowly. 
-**Big Ω** - The lower bound in terms of the input. In other words, if a function has big Ω in f(x), we say that it could grow at least as slowly as f(x), but it could grow more quickly.
-**Big Θ** - The tightest bound, which only exists when the tightest upper bound and the tightest lower bound converge to the same value. 
+* **Big O** - The upper bound in terms of the input. In other words, if a function has big O in f(x), we say that it could grow at most as fast as f(x), but it could grow more slowly.  
+**is the functions f(x) is grow smaller than g(x) f(x) belongs to O(g(n)** 
+* **Big Ω** - The lower bound in terms of the input. In other words, if a function has big Ω in f(x), we say that it could grow at least as slowly as f(x), but it could grow more quickly.  **is the functions f(x) is grow faster than g(x). f(x) belongs to Ω(g(n)** 
+* **Big Θ** - The tightest bound, which only exists when the tightest upper bound and the tightest lower bound converge to the same value.  **is the fuction grow at the same rate as f(g).** 
 
 **Fun sums**
 	1 + 2 + 3 + . . . + N  = Θ(N2)          
