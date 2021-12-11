@@ -154,7 +154,7 @@ root tree take negative value to indicate the size of the tree.
 Thus, the `connect` and `isConnected` operation will never be slower than `log N`, which is fast enough for most programs.
 
 Although we could track the height instead of weight, we will find out that the performance is similar.  
-
+to  maximize the height of the tree by one, you double the size of the tree. 
 ![weighted-quick-union](https://joshhug.gitbooks.io/hug61b/content/chap9/9.4.1.png) 
 
 ![weighted-quick-union](https://joshhug.gitbooks.io/hug61b/content/chap9/9.4.2.png)

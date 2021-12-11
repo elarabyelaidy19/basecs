@@ -3,8 +3,10 @@
 ## B-Trees (2-3, 2-3-4 Trees)
 
 Height of BST
-* Worst case: `Theta(N)`
-* Best case: `Theta(log N)`
+* Worst case: `Theta(N)` == `O(N)`
+* Best case: `Theta(log N)`.
+
+where N is number of nodes.
 
 ![Height of BST ](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-05%20at%2012.56.54%20PM.png "Height of BST ")
 
@@ -13,18 +15,21 @@ O is just an upper bound, rather than the worst case. However, many people use O
 ### BST Performance
 
 * depth: the number of links between a node and the root.
-* height: the lowest depth of a tree, which determines the worst case of runtime.
+* height: the deepest depth of a tree, which determines the worst case of runtime.
 * average depth: average of the total depths in the tree, which determines the average-case runtime.
 
 ### BST insertion order
 
-If we insert nodes in random order, it will actually end up being relatively bushy, in which the average depth and height are expected to be `Theta(log N)`.
+If we insert nodes in random order, it will actually end up being relatively bushy, in which the average depth and height are expected to be `Theta(log N)`.  
+
+**Bushy** means that the average depth is expected to be `Theta(logN)`. 
+**Spindly** means that the average depth is expected to be `Theta(N)`.
 
 However, in the real world situations, data are unlikely inserted randomly.
 
 ### B-Trees
 
-![2-3-4 Tree](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-05%20at%204.12.17%20PM.png "2-3-4 Tree")
+![2-3-4 Tree](https://media.geeksforgeeks.org/wp-content/uploads/20200506235136/output253.png "2-3-4 Tree")
 
 
 The tree showed above is called **B-Tree** or **2-3-4 Tree**. 2-3-4 and 2-3 refer to the number of children each node can have. 
@@ -42,9 +47,13 @@ The worst case runtime of searching a B-tree:
 * Each node had the maximum number of elements
 * Traverse all the way to bottom
 
-The amount of operations will be `L log N`. Since `L` is constant, the runtime is `O(log N)`. B-tree is complex, but it could handle insertion operations in any order.
+The amount of operations will be `L log N`. Since `L` is constant, the runtime is `O(log N)`. B-tree is complex, but it could handle insertion operations in any order. 
 
-## Red Black Trees
+### B-tree invariants 
+- All leaves must be the same distance from the root. 
+- A non-leaf node with k items mut has exactly k+1 children.
+
+## Red Black Trees (Lecture 18)
 
 We will create a new tree structure similar to B-trees, since B-trees are really difficult to implement.
 
@@ -87,7 +96,7 @@ We could use a red link to convert a 3-node to BST tree. We choose arbitrarily t
 
 Because a LLRB tree has a 1-1 correspondence with a 2-3 tree and will always remain within 2x the height of its 2-3 tree, the runtimes of the operations will take `log N` time.
 
-## Hashing
+# Hashing (Lecture  19)
 
 ### Limits of Search Tree Based Sets
 
