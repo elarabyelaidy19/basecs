@@ -22,6 +22,20 @@ public class Asymptotics {
         // O(N) Numbers of calls
     }   
 
+    public static BST find(BST T, Key sk) { 
+        if(T == null) 
+            return null; 
+        if(sk.compareTo(T.sk) == 0) // CompareTo  return false if the two value are equll
+            return T;
+        else if(sk.compareTo(T.sk) > 0)  // > 0 sk is greater  
+            return find(T.right, sk);  
+        else 
+            return find(T.left, sk); 
+
+        // O(log N)
+    }   
+
+
     
-    
+
 }
