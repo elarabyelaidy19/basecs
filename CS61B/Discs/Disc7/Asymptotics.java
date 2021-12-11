@@ -36,6 +36,24 @@ public class Asymptotics {
     }   
 
 
+    public void silly(int[] arr) { // O(log N)
+        if(arr.length  <= 1) 
+            System.out.println("you win");  
+
+        int newLen = arr.length / 2; 
+        int[] firstHalf = new int[newLen]; 
+        int[] secondHalf = new int[newLen]; 
+
+        System.arraycopy(arr, 0, firstHalf, 0, newLen); // O(N) 
+        System.arraycopy(arr, newLen, secondHalf, 0, newLen); // O(N)
+        silly(firstHalf); // O(N)
+        silly(secondHalf); // O(N)
+
+        // the outer function takes O(log N) 
+        // the inner functions  takes O( 4 N) 
+        // the overall runtime  O(NlogN)
+    }
+
     
 
 }
