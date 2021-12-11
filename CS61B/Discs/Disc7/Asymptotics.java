@@ -64,7 +64,24 @@ public class Asymptotics {
         return false;
     }
 
+
+    // Worst Case theta(N), Best Case theta(1) 
     
+    public static boolean findSumFaster(int[] A, int x) { 
+        int left = 0; 
+        int  right = A.length - 1; 
+        while(right > left) { 
+            if(A[left] + A[right] == x) 
+                return true; 
+            else if(A[left] + A[right] < x) 
+                left++; 
+            else 
+                right--;
+        }
+        return false;
+    }
+
+
     
 
 }
