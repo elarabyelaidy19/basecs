@@ -99,7 +99,29 @@ public class Asymptotics {
             i++;
         } 
         return unionArray;
+    }
 
+    public static int[] intersection(int[] A, int[] B) { 
+        HashSet<Integer> intersctSet = new HashSet<>();
+        HashSet<Integer> setOfA = new HashSet<>();
+
+        for(int a : A) { 
+            setOfA.add(a);
+        }
+
+        for(int b : B) { 
+            if(setOfA.contains(b)) {
+                intersctSet.add(b);
+            }
+        }
+
+        int[] intersctArray = new int[intersctSet.size()]; 
+        int i = 0; 
+        for(int num : intersctSet) { 
+            intersctArray[i] = num; 
+            i++;
+        }
+        return intersctArray;
     }
 
     
