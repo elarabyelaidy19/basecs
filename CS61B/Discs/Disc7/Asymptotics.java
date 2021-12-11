@@ -83,7 +83,8 @@ public class Asymptotics {
         return false;
     }
 
-
+    // O(N) time 
+    // O(N) Space
     public static int[] union(int[] A, int[] B) { 
         HashSet<Integer> set = new HashSet<>(); 
 
@@ -101,6 +102,9 @@ public class Asymptotics {
         return unionArray;
     }
 
+
+    // O(N) Time  
+    // O(N) Space 
     public static int[] intersection(int[] A, int[] B) { 
         HashSet<Integer> intersctSet = new HashSet<>();
         HashSet<Integer> setOfA = new HashSet<>();
