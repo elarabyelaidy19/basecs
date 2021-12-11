@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 public class Asymptotics {
     
     public void asymp1(int[] a, int N, int M) {  
@@ -66,7 +68,7 @@ public class Asymptotics {
 
 
     // Worst Case theta(N), Best Case theta(1) 
-    
+
     public static boolean findSumFaster(int[] A, int x) { 
         int left = 0; 
         int  right = A.length - 1; 
@@ -81,6 +83,24 @@ public class Asymptotics {
         return false;
     }
 
+
+    public static int[] union(int[] A, int[] B) { 
+        HashSet<Integer> set = new HashSet<>(); 
+
+        for(int a : A) 
+            set.add(a); 
+        for(int b : B) 
+            set.add(b); 
+
+        int[] unionArray = new int[set.size()];
+        int i = 0;
+        for(int num : set) { 
+            unionArray[i] = num; 
+            i++;
+        } 
+        return unionArray;
+
+    }
 
     
 
