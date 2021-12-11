@@ -52,8 +52,19 @@ public class Asymptotics {
         // the outer function takes O(log N) 
         // the inner functions  takes O( 4 N) 
         // the overall runtime  O(NlogN)
+    } 
+
+    public static boolean findSum(int[] A, int x) { 
+        for(int i = 0; i < A.length; i+= 1) { 
+            for(int j = 0; j < A.length; j+= 1) { 
+                if(A[i] + A[j] == x) // O(N^2)
+                    return true;
+            }
+        }
+        return false;
     }
 
+    
     
 
 }
