@@ -59,7 +59,33 @@ public class BSM<K extends Comparable<K>, v> implements Map61B<K, V> {
         return node.value;
     }
 
-    
+    public size() { 
+        return size;
+    } 
+
+    public Node put(K k, V v) { 
+        return put(root, k, v); 
+        size += 1;
+    }
+
+    private Node put(Node node, K k, V v) { 
+        if(node == null) { 
+            return new(k, v)
+        }
+
+        int cmp = k.compareTo(node.k); 
+        if(cmp > 0) { 
+            node.right = put(node.right, k, v);
+        } else if (cmp < 0) { 
+            node.left = put(node.left, k, v);
+        } else { 
+            node.value = v; 
+        }
+
+        return node;
+    }
+
+
 
 
     
