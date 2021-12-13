@@ -133,6 +133,37 @@ public class BSM<K extends Comparable<K>, v> implements Map61B<K, V> {
         return getMin(node.left);
     }
 
+    public V remove(K k, V v) { 
+        if(containsKey(k)) { 
+            V targetValue = get(k); 
+            if(targetValue.equals(v)) { 
+                root = remove(root, k); 
+                size--; 
+                return targetValue;
+            }
+        }
+        return null;
+    }
+
+    public Iterator<K> iterator() { 
+        return keySet().iterator;
+    }
+
+    public void printOrder() { 
+        printOrder(root);
+    }
+
+    private printOrder(Node node) { 
+        if(node == null) { 
+            return;
+        }
+
+        printOrder(node.left); 
+        System.out.println(node.key.toString() + " -> " + node.value.toString()); 
+        printOrder(node.right);
+    }
+
+
 
 
 
