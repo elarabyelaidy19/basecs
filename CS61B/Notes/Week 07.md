@@ -149,7 +149,7 @@ public class DataIndexedIntegerSet {
 
 Suppose we want to insert "cat" to the data strucutre, we could use the first letter as index. (a = 1, b = 2, ... , z = 26)
 
-However, other words may start with 'c' or special characters.
+However, other words may start with 'c' causing collision or special characters.
 
 #### Avoiding Collisions
 
@@ -158,6 +158,26 @@ We could se all digits by multiplying each by a power of 27.
 * The index of "cat" is (3 x 27^2)  + (1 x 27^1) + (20 x 27^0) = 2234.
 * The index of "bee" is (2 x 27^2)  + (5 x 27^1) + (5 x 27^0) = 1598.
 
+
+```java 
+
+public static int letterSum(String str, int i) { 
+    int ithChar = str.charAt(i); 
+    if(ithChar > 'z' || ithChar < 'a') {   
+        throw new IllegalArgumentException("Invalid character");
+    }
+    return (ithChar - 'a') + 1;
+}
+
+public static int englishToInt(String str) {
+    int sum = 0;
+    for(int i = 0; i < str.length(); i++) {
+        sum = sum * 27; 
+        sum = sum + letterSum(str, i);
+    }
+    return sum;
+}
+```
 As long as we pick a base >= 26, this algorithm is guaranteed to give each lowercase English word a unqiue number. Thus, we will never have a collision.
 
 ```java
@@ -228,10 +248,10 @@ Each bucket in our array is initially empty. Bucket h is a separate chain of all
 * If bucket h is empty, create a new list containing x and store it at h.
 * If bucket h is already a list, add x to the list at h if it's not already present.
 
-Worst case runtime will be proportional to length of longest list.
+Worst case runtime will be proportional to length of longest list (Q).
 
 * `contains(x)`: Theta(Q);
-* `add(x)`: Theta(Q);
+* `add(x)`: Theta(Q); 
 
 ### Saving Memory
 
