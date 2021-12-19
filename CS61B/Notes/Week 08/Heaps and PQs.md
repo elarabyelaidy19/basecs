@@ -72,7 +72,6 @@ public class Tree2<Key> {
 }
 ```
 
-![Tree2](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-09%20at%2010.15.11%20PM.png "Tree2")
 
 ### Approach 3
 
@@ -85,7 +84,9 @@ public class Tree3<Key> {
 }
 ```
 
-![Tree3](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-09%20at%2010.26.05%20PM.png "Tree3")
+### The Three Approaches
+
+![ADTs implementations](../image/PQtry.png)
 
 ## Implementation
 
@@ -146,3 +147,14 @@ Heap Structure
 * `add`: ` Θ(log N)`
 * `getSmallest`: ` Θ(1)`
 * `removeSmallest`: ` Θ(log N)`
+
+![ADTs implementations](../image/ADT.png)
+
+## The Search Problem 
+The problem we are presented: Given a stream of data, retrieve information of interest. 
+
+All of the data structures we have discussed so far have been to solve the search problem 
+
+Abstraction often happens in layers. Abstract Data Types can often contain two abstract ideas boiling down to one implementation. 
+
+![ADTs implementations](../image/ADTs.png)
