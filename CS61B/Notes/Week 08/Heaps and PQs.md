@@ -101,6 +101,12 @@ Binary min-heap has the following properties:
 
 The `Tree3` could be used to implement the heap structure. Leave one empty spot at the beginning to simplify computation. 
 
+
+### Priority Invariants 
+
+![PQ specs](../image/PQin.png)
+
+### Ones indexing 
 * `leftChild(k)` = k * 2
 * `rightChild(k)` = k * 2 + 1
 * `parent(k)` = k / 2

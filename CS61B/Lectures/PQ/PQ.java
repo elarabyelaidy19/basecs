@@ -1,4 +1,4 @@
-public interface MinPQ<Item> {
+public interface PQ<Item> {
     
     public void add(Item x); 
     public Item getSmallest(); 
