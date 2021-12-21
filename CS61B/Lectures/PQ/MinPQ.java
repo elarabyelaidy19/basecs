@@ -1,4 +1,5 @@
 import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 public class MinPQ<Key> implements Iterable<Key> {
     private Key[] pq; 
@@ -33,6 +34,27 @@ public class MinPQ<Key> implements Iterable<Key> {
         for(int k = n/2; k >= 1; i--) { 
             sink(k);
         }
-        
+
+    }  
+
+    public boolean isEmpty() { 
+        return N == 0;
+    }
+
+    public int size() { 
+        return N;
+    }
+
+    public Key min() { 
+        if (isEmpty()) { 
+            throw new NoSuchElementException("Prority Queue underflow");
+        }
+        return pq[1];
     } 
+
+    
+
+
+
+
 }
