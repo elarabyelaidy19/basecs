@@ -50,9 +50,40 @@ public class MinPQ<Key> implements Iterable<Key> {
             throw new NoSuchElementException("Prority Queue underflow");
         }
         return pq[1];
+    }  
+
+    private void resize(int capacity) { 
+        assert n < capacity; 
+        Key[] temp = (Key[]) new Object[capacity]; 
+        for(int i = 0; i <= n; i++) { 
+            temp[i] = pq[i];
+        }
+        pq = temp;
     } 
 
+    private void exchange(int i, int j) { 
+        int temp = i; 
+        i = j; 
+        j= temp;
+    }
+
+    private boolean greater(int i, int j) { 
+        if(comparator == null) { 
+            return ((Comparable<Key>) pq[i].compareTo(pq[j]) > 0;
+        } else { 
+            return comparator.compare(pq[i], pq[j]);
+        }
+    }
+
     
+
+
+
+
+
+
+
+
 
 
 
