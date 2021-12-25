@@ -63,6 +63,24 @@ public class MinPQ<Key> implements Iterable<Key> {
         pq = temp;
     } 
 
+    public void insert(Key x) { 
+        if(n == pq.length) resize(2 * pq.length); 
+        pq[++n] = x;
+        swim(n); 
+        assert isMinHeap();
+    }
+
+    public Key delMin() { 
+        if(isEmpty()) throw new  NoSuchElementException(); 
+        Key min = pq[1]; 
+        exchange(1, n--); 
+        sink(1); 
+        pq[n+1] = null; 
+        if((n > 0) && (n == (pq.length - 1)/4)) resize(2*pq.length/2); 
+        assert isMinHeap();
+        return min;
+    }
+
     // bubble up if parent(k/2) > children(k)
     private void swim(int k) { 
         while(i > 1 && greater(k/2, k)) { 
