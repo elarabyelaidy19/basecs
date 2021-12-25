@@ -3,12 +3,12 @@ import java.util.NoSuchElementException;
 
 public class MinPQ<Key> implements Iterable<Key> {
     private Key[] pq; 
-    private int N;  
+    private int n;  
     private Comparator<Key> comparator;
 
     public MinPQ(int initCapacity) {
         pq = (Key[]) new Object[initCapacity + 1];
-        N = 0;
+        n = 0;
     }
 
     public MinPQ() {
@@ -18,7 +18,7 @@ public class MinPQ<Key> implements Iterable<Key> {
     public MinPQ(int initCapacity, Comparator<Key> comparator) { 
         this.comparator = comparator; 
         pq = (Key[]) new Object[initCapacity+1]; 
-        N = 0;
+        n = 0;
     }
 
     public MinPQ(Comparator<Key> comparator) { 
@@ -38,11 +38,11 @@ public class MinPQ<Key> implements Iterable<Key> {
     }  
 
     public boolean isEmpty() { 
-        return N == 0;
+        return n == 0;
     }
 
     public int size() { 
-        return N;
+        return n;
     }
 
     public Key min() { 
@@ -51,6 +51,8 @@ public class MinPQ<Key> implements Iterable<Key> {
         }
         return pq[1];
     }  
+
+
 
     private void resize(int capacity) { 
         assert n < capacity; 
@@ -61,31 +63,84 @@ public class MinPQ<Key> implements Iterable<Key> {
         pq = temp;
     } 
 
+    // bubble up if parent(k/2) > children(k)
+    private void swim(int k) { 
+        while(i > 1 && greater(k/2, k)) { 
+            exchange(k/2, k); 
+            k = k/2;
+        }
+    }
+
+    private void sink(int k) { 
+        while(2*k <= n) { 
+            j = 2*k; 
+            if(j < n && greater(j, j+1)) j++; 
+            if(!greater(k, j)) break; 
+            exchange(k, j); 
+            k = j;
+        }
+    }
+
+
     private void exchange(int i, int j) { 
-        int temp = i; 
+        Key temp = i; 
         i = j; 
         j= temp;
     }
 
     private boolean greater(int i, int j) { 
         if(comparator == null) { 
-            return ((Comparable<Key>) pq[i].compareTo(pq[j]) > 0;
+            return ((Comparable<Key>) pq[i]).compareTo(pq[j]) > 0;
         } else { 
             return comparator.compare(pq[i], pq[j]);
         }
+    } 
+
+    public boolean isMinHeap() { 
+        for(int i = 1; i < n; i++) { 
+            if(pq[i] == null) return false;
+        }
+        for(int i = n+1; i < pq.length; i++) { 
+            if(pq[i] != null) return false; 
+        }
+        if(pq[1] != null) return false; 
+        return isMinHeapOrdered(1);
     }
 
-    
+    private boolean isMinHeapOrdered(int k) { 
+        if(k > N) return true; 
+        int left = k * 2; 
+        int right = k * 2 + 1; 
+        if((left <= n) && greater(left, k)) return false; 
+        if((right <= n) && greater(right, k)) return false; 
+        return isMinHeapOrdered(left) && isMinHeapOrdered(right);
+    } 
 
+    public Iterator<Key> iterator() {
+        return new HeapIterator();
+    }
 
+    private class HeapIterator implements Iterator<Key> {
+        // create a new pq
+        private MinPQ<Key> copy;
 
+        // add all items to copy of heap
+        // takes linear time since already in heap order so no keys move
+        public HeapIterator() {
+            if (comparator == null) copy = new MinPQ<Key>(size());
+            else                    copy = new MinPQ<Key>(size(), comparator);
+            for (int i = 1; i <= n; i++)
+                copy.insert(pq[i]);
+        }
 
+        public boolean hasNext()  { return !copy.isEmpty();                     }
+        public void remove()      { throw new UnsupportedOperationException();  }
 
-
-
-
-
-
+        public Key next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            return copy.delMin();
+        }
+    }
 
 
 }
