@@ -2,5 +2,6 @@
     "java.project.sourcePaths": [
         "Alists",
         "Testing"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
