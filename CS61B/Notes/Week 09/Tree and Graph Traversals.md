@@ -16,7 +16,7 @@ Rooted tree
 
 Tree traversal refers to the process of visiting each node in a tree data structure, exactly once. Traversals are classified by the order in which the nodes are visited.
 
-![Example Tree](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-17%20at%203.53.23%20PM.png)
+![Example Tree](../image/tree1.png)
 
 ### Level Order Traversal
 
@@ -114,7 +114,9 @@ A C B E G F D
 * A sequence of vertices connectted by edges is a path.
 * A path of which first and last verticies are the same is a cycle.
 * Two vertices are connected when there is a path between them.
-* If all vertices are connected, the graph is connected.
+* If all vertices are connected, the graph is connected. 
+
+![Graph properties](../image/graph1.png)
 
 ## Graph Problems
 
@@ -124,7 +126,7 @@ Find whether there's a path between vertices s and t.
 
 To solve this problem, an algorithm similar to the tree traversal is created. 
 
-```
+```java
 public boolean connected(s, t)
 
 mark s
@@ -158,4 +160,6 @@ To implement this traversal algorithm, two arrays, `marked` and `edgeTo`, are re
 
 * DFS Preorder: Action is before DFS calls to neighbors. (The algorithm created above.)
 * DFS Postorder: Action is after DFS calls to neighbors.
-* BFS (Breadth First Search) Order: Act in order of distance from s. (Analogous to "level order.")
+* BFS (Breadth First Search) Order: Act in order of distance from s. (Analogous to "level order.") 
+
+![Graph/Tree Traversal](../image/graph2.png)
