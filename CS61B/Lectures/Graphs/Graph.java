@@ -1,4 +1,5 @@
-package UCB.CS61B.Lectures.Graphs;
+package UCB.CS61B.Lectures.Graphs; 
+
 public class graph { 
     private static final String NEW_LINE = System.getProperty("line.separator"); 
     private final int V; 
@@ -6,7 +7,7 @@ public class graph {
     private Bag<Integer>[] adj;
     
     
-    public Graph(int V) {  
+    public Graph(int V) {
         if(V < 0) throw new IllegalArgumentException("Number of vertices must be nonnegative");
         this.V = V; 
         this.E = 0; 
@@ -37,14 +38,18 @@ public class graph {
         }catch(NoSuchElementException e) { 
             throw new IllegalArgumentException("invalid input format in Graph constructor", e); 
         }
-    } 
+    }
+
+    public graph(int v) {
+        V = v;
+    }
 
 
     public int V() { 
         return V; 
     } 
 
-    public in E() { 
+    public int E() {
         return E; 
     }
 
