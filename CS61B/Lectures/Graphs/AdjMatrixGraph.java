@@ -80,7 +80,25 @@ public class AdjMatrixGraph {
             throw new UnsupportedOperationException();
         }
 
-        
+        public String toString() { 
+            StringBuilder s = new StringBuilder();  
+            s.append(V + " " + E + NEWLINE);
+            for(int v = 0; v < V; v++) { 
+                for(int w : adj(v)) { 
+                    s.append(w + " ");
+                }
+                s.append(NEWLINE);
+            }
+            return s.toString();
+        }
+
+    }
+
+    public static void main(String[] args) {
+        int V = Integer.parseInt(args[0]); 
+        int E = Integer.parseInt(args[1]); 
+        AdjMatrixGraph adj = new AdjMatrixGraph(E, V); 
+        System.out.print(adj);
     }
 
 
