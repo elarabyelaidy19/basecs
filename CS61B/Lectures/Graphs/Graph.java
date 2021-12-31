@@ -40,6 +40,30 @@ public class graph {
         }
     }
 
+    public Graph(Graph G) {
+        this.V = G.V();
+        this.E = G.E();
+        if (V < 0) throw new IllegalArgumentException("Number of vertices must be non-negative");
+
+        // update adjacency lists
+        adj = (Bag<Integer>[]) new Bag[V];
+        for (int v = 0; v < V; v++) {
+            adj[v] = new Bag<Integer>();
+        }
+
+        for (int v = 0; v < G.V(); v++) {
+            // reverse so that adjacency list is in same order as original
+            Stack<Integer> reverse = new Stack<Integer>();
+            for (int w : G.adj[v]) {
+                reverse.push(w);
+            }
+            for (int w : reverse) {
+                adj[v].add(w);
+            }
+        }
+    }
+
+
     public graph(int v) {
         V = v;
     }
