@@ -1,3 +1,6 @@
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class AdjMatrixGraph {
     private static final String NEWLINE = System.getProperty("line.seprator");
 
@@ -38,8 +41,47 @@ public class AdjMatrixGraph {
         adj[v][w] = true;
     }
 
-    
+    public boolean contain(int v, int w) { 
+        return adj[w][v];
+    }
 
+    public Iterable<Integer> adj(int v) { 
+        return new adjIterator(v);
+    }
+
+    private class adjIterator implements Iterator<Integer>, Iterable<Integer> { 
+        private int v; 
+        private int w = 0; 
+
+        adjIterator(int v) { 
+            this.v = v;
+        }
+
+        public Iterator<Integer> iterator() { 
+            return this;
+        }
+
+        public boolean hasNext() { 
+            while(w < V) { 
+                if(adj[w][v]) return true; 
+                w++;
+            }
+            return false;
+        }
+
+        public Integer next() { 
+            if(!hasNext()) 
+                throw new NoSuchElementException();  
+            
+            return w++;
+        }
+
+        public void remove() { 
+            throw new UnsupportedOperationException();
+        }
+
+        
+    }
 
 
 }
