@@ -1,3 +1,5 @@
+package UCB.CS61B.Lectures.Graphs;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -21,7 +23,7 @@ public class AdjMatrixGraph {
         if(E < 0) throw new IllegalArgumentException("too few edgees"); 
 
         while(this.E != E) { 
-            int v = StdRandom.uniform(V); 
+            int v = StdRandon.uniform(V); 
             int w = StdRandom.uniform(V); 
             addEdge(v, w);
         }
@@ -69,7 +71,7 @@ public class AdjMatrixGraph {
             return false;
         }
 
-        public Integer next() { 
+        public int next() {
             if(!hasNext()) 
                 throw new NoSuchElementException();  
             
