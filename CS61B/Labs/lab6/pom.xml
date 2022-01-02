@@ -11,7 +11,7 @@
         <relativePath>../library-sp21/javalib/masterpom.xml</relativePath>
     </parent>
     <properties>
-       <maven
+       <maven/>
     </properties>
 
     <groupId>CS61B</groupId>
