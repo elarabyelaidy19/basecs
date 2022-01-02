@@ -1,3 +1,5 @@
+package UCB.CS61B.Lectures.Graphs;
+
 public class GraphClient {
     public static int maxDegree(Graph G) {  
         // degree of vertix is the number of edges incident on it. 

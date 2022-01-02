@@ -1,6 +1,6 @@
-package UCB.CS61B.Lectures.Graphs; 
+import java.util.NoSuchElementException;
 
-public class graph { 
+public class Graph { 
     private static final String NEW_LINE = System.getProperty("line.separator"); 
     private final int V; 
     private int E; 
@@ -17,7 +17,7 @@ public class graph {
         }
     }
 
-    public Graph(In in) { 
+    public Graph(In in) {
         if(in == null) throw new IllegalArgumentException("argument is null"); 
         try { 
             this.V = in.readInt(); 
@@ -64,7 +64,7 @@ public class graph {
     }
 
 
-    public graph(int v) {
+    public Graph(int v) {
         V = v;
     }
 
@@ -90,7 +90,7 @@ public class graph {
     }
 
 
-    public Iterable<Integer> adj(int v) { 
+    public Bag<Integer> adj(int v) {
         validateVertex(v); 
         return adj[v]; 
     }
