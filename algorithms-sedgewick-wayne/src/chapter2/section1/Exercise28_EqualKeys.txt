@@ -1,0 +1,127 @@
+2.1.28 - Equal keys
+
+From the book we know that:
+Proposition A. Selection sort uses ~(N^2 / 2) compares and N exchanges to sort an array of length N.
+Proposition B. Insertion sort uses ~(N^2 / 4) compares and ~(N^2 / 4) exchanges to sort a randomly ordered array of
+length N with distinct keys, on the average. The worst case is ~(N^2 / 2) compares and ~(N^2 / 2) exchanges and the best
+case is N - 1 compares and 0 exchanges.
+
+Thus the running time of selection sort is bound by O(N^2 / 2) and insertion sort averages on O(N^2 / 2)
+(this is because ~(N^2 / 4) compares + ~(N^2 / 4) exchanges = ~(N^2 / 4)).
+
+For arrays with 2 key values (assuming value 1 and value 2) of equal probability:
+* Selection sort: it still needs to scan N - K elements to sort the Kth element.
+  So its asymptotic running time remains the same O(N^2 / 2).
+* Insertion sort: when sorting the (K + 1)th element, there are already K / 2 ones and K / 2 twos sorted.
+  Thus the (random variable) expected value of the running time for sorting the (K + 1)th element is:
+  0.5 * 1 + 0.5 * K
+  Thus the total running time for K = 0, 1, 2, ..., N is:
+  0.5 * N + ((N + 1) * N / 2) * 0.5 = 3N/4 + (N ^ 2) / 4 ~= O(N^2 / 4)
+  Comparing O(N^2 / 4) against O(N^2 / 2) we can make the hypothesis that the running time of insertion sort with
+  2 key values is half of that for random values.
+
+Hypothesis: 
+1- Selection sort will take the same time for both arrays with different values and arrays with only 2 possible values.
+2- Insertion sort will take half the same for arrays with only 2 possible values than for arrays with different values.
+
+Validation:
+
+Selection Sort
+For an array of size 128: 
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
+
+For an array of size 256: 
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
+
+For an array of size 512: 
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
+
+For an array of size 1024: 
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
+
+For an array of size 2048: 
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
+
+For an array of size 4096: 
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
+
+For an array of size 8192: 
+Time for an array with any values: 0.1
+Time for an array with 2 values: 0.1
+
+For an array of size 16384: 
+Time for an array with any values: 0.2
+Time for an array with 2 values: 0.2
+
+For an array of size 32768: 
+Time for an array with any values: 1.0
+Time for an array with 2 values: 0.7
+
+For an array of size 65536: 
+Time for an array with any values: 4.4
+Time for an array with 2 values: 3.0
+
+For an array of size 131072: 
+Time for an array with any values: 20.9
+Time for an array with 2 values: 11.7
+
+Insertion Sort
+For an array of size 128: 
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
+
+For an array of size 256: 
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
+
+For an array of size 512: 
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
+
+For an array of size 1024: 
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
+
+For an array of size 2048: 
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
+
+For an array of size 4096: 
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
+
+For an array of size 8192: 
+Time for an array with any values: 0.1
+Time for an array with 2 values: 0.0
+
+For an array of size 16384: 
+Time for an array with any values: 0.2
+Time for an array with 2 values: 0.1
+
+For an array of size 32768: 
+Time for an array with any values: 1.0
+Time for an array with 2 values: 0.4
+
+For an array of size 65536: 
+Time for an array with any values: 4.3
+Time for an array with 2 values: 1.5
+
+For an array of size 131072: 
+Time for an array with any values: 18.9
+Time for an array with 2 values: 6.3
+
+--------
+Result:
+1- Selection sort is faster for arrays with only 2 possible values than for arrays with different values.
+2- Insertion sort is a lot faster (about a third of the time) for arrays with only 2 possible values than for arrays with different values.
+
+Also, insertion sort is faster than selection sort for sorting arrays with only 2 possible values.
+
+Thanks to faame (https://github.com/faame) for improving the analysis.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/216

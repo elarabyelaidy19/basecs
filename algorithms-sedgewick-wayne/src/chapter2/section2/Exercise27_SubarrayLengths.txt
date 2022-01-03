@@ -1,0 +1,13 @@
+2.2.27 - Subarray lengths
+
+Array Size |  AVG Length of other SubArray(%)
+    131072                            36.7
+    262144                            36.8
+    524288                            36.8
+   1048576                            36.8
+   2097152                            36.8
+   4194304                            36.8
+   8388608                            36.8
+  16777216                            36.8
+
+Empirical determination of the average length of the other subarray when the first subarray exhausts, as a function of N: 36%
