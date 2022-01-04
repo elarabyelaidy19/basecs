@@ -46,5 +46,39 @@ public class BreadthFirstPath {
         }
     }
 
-    private void 
+    private void bfs(Graph G, Iterable<Integer> sources) { 
+        Queue<Integer> q = new Queue<Integer>(); 
+        for(int s : sources) { 
+            distTo[s] = 0; 
+            marked[s] = true; 
+            q.add(s);
+        }
+
+        while(!q.isEmpty()) { 
+            int v = q.remove(); 
+            for(int w : G.adj(v)) { 
+                distTo[w] = distTo[v] + 1; 
+                marked[w] = true; 
+                edgeTo[w] = v; 
+                q.add(w);
+            }
+        }
+    }
+
+    private boolean hasPathTo(int v) { 
+        validateVertex(v); 
+        return marked[v];
+    }
+
+    private int distTo(int v) { 
+        validateVertex(v); 
+        return distTo[v];
+    } 
+
+    private void validateVertex(int v) { 
+        int V = marked.length; 
+        if(v < 0 || v >= V) { 
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+        }
+    }
 }
