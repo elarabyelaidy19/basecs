@@ -47,7 +47,31 @@ public class ConnectedComponent {
         size[count]++;
         for(Edge e : G.adj(v)) { 
             int w = e.other(v); 
-            if(!marked[]) 
+            if(!marked[w]) { 
+                dfs(G, v);
+            } 
         }
     }
+
+    public int id(int v) { 
+        validateVertix(v); 
+        return id[v];
+    }
+
+    public int size(int v) { 
+        validtaeVertix(v); 
+        return size[id[v]];
+    }
+
+    public int count() { 
+        return count;
+    }
+
+    public boolean connected(int v, int w) { 
+        validateVertix(v); 
+        validateVertix(w); 
+        return id(v) == id(w);
+    }
+
+    
 }
