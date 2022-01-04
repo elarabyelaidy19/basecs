@@ -1,104 +1,50 @@
+import java.util.Queue;
 
-public class BreadthFirstPaths {
+public class BreadthFirstPath { 
+    private static final int INFINITY = Integer.MAX_VALUE; 
+    private boolean[] marked; 
+    private int[] edgeTo; 
+    private int[] distTo; 
 
-    private boolean[] visited;
-    private int[] edgeTo;
-    private final int source;
+    public BreadthFirstPath(Graph G, int s) { 
+        marked = new boolean[G.V()]; 
+        edgeTo = new int[G.V()]; 
+        distTo = new int[G.V()]; 
+        validateVertex(s); 
+        bfs(G, s); 
+        assert check(G, s);
+    }
 
-    private int[] distTo;
+    public BreadthFirstPath(Graph G, Iterable<Integer> source) { 
+        marked = new boolean[G.V()]; 
+        edgeTo = new int[G.V()]; 
+        distTo = new int[G.V()];  
+        for(int v = 0; v < G.V(); v++) { 
+            distTo[v] = INFINITY; 
+        }
+        validateVertex(source);  
+        bfs(G, source);
+    }
 
-    public BreadthFirstPaths(GraphInterface graph, int source) {
-        visited = new boolean[graph.vertices()];
-        edgeTo = new int[graph.vertices()];
-        this.source = source;
+    private void bfs(Graph G, int s) { 
+        Queue<Integer> q = new Queue<Integer>(); 
+        for(int v = 0; v < G.V(); v++) 
+            distTo[v] = INFINITY;  
 
-        distTo = new int[graph.vertices()];
+        distTo[s] = 0; 
+        marked[s] = true; 
+        q.add(s); 
 
-        distTo[source] = 0;
-        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
-            if (vertex == source) {
-                continue;
+        while(!q.isEmpty()) { 
+            int v = q.remove(); 
+            for(int w : G.adj(v)) { 
+                edgeTo[w] = v; 
+                distTo[w] = distTo[v] + 1; 
+                marked[w] = true; 
+                q.add(w);
             }
-            distTo[vertex] = Integer.MAX_VALUE;
-        }
-
-        bfs(graph, source);
-    }
-
-    private void bfs(GraphInterface graph, int sourceVertex) {
-        Queue<Integer> queue = new Queue<>();
-        visited[sourceVertex] = true;
-
-        queue.enqueue(sourceVertex);
-
-        while (!queue.isEmpty()) {
-            int currentVertex = queue.dequeue();
-
-            for(int neighbor : graph.adjacent(currentVertex)) {
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-
-                    edgeTo[neighbor] = currentVertex;
-                    distTo[neighbor] = distTo[currentVertex] + 1;
-
-                    queue.enqueue(neighbor);
-                }
-            }
         }
     }
 
-    //O(1)
-    public int distTo(int vertex) {
-        return distTo[vertex];
-    }
-
-    //O(1)
-    public int edgeTo(int vertex) {
-        return edgeTo[vertex];
-    }
-
-    public boolean hasPathTo(int vertex) {
-        return visited[vertex];
-    }
-
-    public Stack<Integer> pathTo(int vertex) {
-        if (!hasPathTo(vertex)) {
-            return null;
-        }
-
-        Stack<Integer> path = new Stack<>();
-
-        for(int currentVertex = vertex; currentVertex != source; currentVertex = edgeTo[currentVertex]) {
-            path.push(currentVertex);
-        }
-
-        path.push(source);
-        return path;
-    }
-
-    public static void main(String[] args) {
-        In in = new In(args[0]);
-        Graph G = new Graph(in);
-        // StdOut.println(G);
-
-        int s = Integer.parseInt(args[1]);
-        BreadthFirstPaths bfs = new BreadthFirstPaths(G, s);
-
-        for (int v = 0; v < G.V(); v++) {
-            if (bfs.hasPathTo(v)) {
-                StdOut.printf("%d to %d (%d):  ", s, v, bfs.distTo(v));
-                for (int x : bfs.pathTo(v)) {
-                    if (x == s) StdOut.print(x);
-                    else        StdOut.print("-" + x);
-                }
-                StdOut.println();
-            }
-
-            else {
-                StdOut.printf("%d to %d (-):  not connected\n", s, v);
-            }
-
-        }
-    }
-
+    private void 
 }
