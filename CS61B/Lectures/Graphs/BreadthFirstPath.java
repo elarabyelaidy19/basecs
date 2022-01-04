@@ -1,4 +1,5 @@
 import java.util.Queue;
+import java.util.Stack;
 
 public class BreadthFirstPath { 
     private static final int INFINITY = Integer.MAX_VALUE; 
@@ -80,5 +81,17 @@ public class BreadthFirstPath {
         if(v < 0 || v >= V) { 
             throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
         }
+    } 
+
+    public Iterable<Integer> pathTo(int v) { 
+        validateVertex(v); 
+        if(!hasPathTo(v)) return null; 
+        Stack<Integer> path = new Stack<>(); 
+        int x;
+        for(x = v; distTo[x] != 0; x = edgeTo[x]) { 
+            path.push(x); 
+        }
+        path.push(x); 
+        return path;
     }
 }

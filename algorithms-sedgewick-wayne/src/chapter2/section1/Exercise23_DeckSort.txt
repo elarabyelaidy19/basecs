@@ -1,5 +1,0 @@
-2.1.23 - Deck sort
-
-They separate all cards by suit, making the swaps in order to keep cards in the same suit next to each other (dividing the row in 4 areas).
-Then, in each suit, they sort the cards by rank using selection sort.
-In the second step (once suits are sorted), some of them move the unsorted smaller ranks near to the front while searching for the next smallest rank.
