@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DijkestraShortestPathWithMinHeap {
@@ -30,6 +31,28 @@ public class DijkestraShortestPathWithMinHeap {
         for(int i = 0; i < nodes; i++) graph.add(new ArrayList<>());
     }
 
-    
+    public void addEdge(int from, int to, double cost) { 
+        edgeCount++; 
+        graph.get(from).add(new Edge(to, cost));
+    } 
+
+    public List<List<Edge>> getGraph() { 
+        return graph;
+    }
+
+    public double dijkestra(int start, int to) { 
+        int degree = edgeCount / nodes;  
+        MinIndexedHeap<Double> ipq = new MinIndexedHeap<>(degree, nodes); 
+        ipq.insert(start, 0.0); 
+
+        dist = new double[nodes]; 
+        Arrays.fill(dist, double.POSITIVE_INFINITY); 
+        dist[start] = 0.0; 
+
+        boolean visited = new boolean[nodes]; 
+        prev = new Integer[nodes]; 
+        
+    }
+
 
 }
