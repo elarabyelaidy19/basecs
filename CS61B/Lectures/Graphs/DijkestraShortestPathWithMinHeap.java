@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class DijkestraShortestPathWithMinHeap {
@@ -89,7 +90,9 @@ public class DijkestraShortestPathWithMinHeap {
         List<Integer> path = new ArrayList<>();
         double dist = dijkestra(start, end); 
         if(dist == Double.POSITIVE_INFINITY) return path; 
-        
+        for(Integer at = end; at != null; at = prev[at]) 
+            path.add(at);
+        Collection.reverse(path);
     }
 
 }
