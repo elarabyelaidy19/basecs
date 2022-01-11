@@ -74,9 +74,22 @@ public class DijkestraShortestPathWithMinHeap {
                     }
                 }
             }
-            if(nodeId == end) return dist[end];
+            if(nodeId == end) return dist[end]; 
+            return Double.POSITIVE_INFINITY;
         }
+
     }
 
+    public List<Integer> reconstructPath(int start, int end) { 
+        if(start < 0 || end >= nodes) 
+            throw new IllegalArgumentException(); 
+        if(start < 0 || start > end)  
+            throw new IllegalArgumentException(); 
+
+        List<Integer> path = new ArrayList<>();
+        double dist = dijkestra(start, end); 
+        if(dist == Double.POSITIVE_INFINITY) return path; 
+        
+    }
 
 }
