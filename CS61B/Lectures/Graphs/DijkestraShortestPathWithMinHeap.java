@@ -51,7 +51,31 @@ public class DijkestraShortestPathWithMinHeap {
 
         boolean visited = new boolean[nodes]; 
         prev = new Integer[nodes]; 
-        
+
+        while(!ipq.isEmpty()) { 
+            int nodeId = ipq.peekMinKeyIndex(); 
+            visited[nodeId] = true; 
+            double minValue = ipq.pollMinValue; 
+
+            if(minValue > dist[nodeId]) continue;
+
+            for(Edeg edge : graph.get(nodeId)) { 
+                if(visited[edge.to]) continue; 
+
+                double newdist = dist[nodeId] + edge.cost; 
+                if(newdist < dist[edge.to]) { 
+                    prev[edge.to] = nodeId; 
+                    dist[edge.to] = newdist;
+
+                    if(!ipq.contains(edge.to)) { 
+                        ipq.insert(edge.to, newdist); 
+                    }else { 
+                        ipq.decrease(edge.to, newdist);
+                    }
+                }
+            }
+            if(nodeId == end) return dist[end];
+        }
     }
 
 
