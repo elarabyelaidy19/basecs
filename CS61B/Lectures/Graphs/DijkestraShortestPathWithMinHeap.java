@@ -93,6 +93,7 @@ public class DijkestraShortestPathWithMinHeap {
         for(Integer at = end; at != null; at = prev[at]) 
             path.add(at);
         Collection.reverse(path);
+        return path;
     }
 
 }
