@@ -45,3 +45,31 @@ SELECT S.name, S.gpa, S.age*2 AS a2
     WHERE S.dept = 'CS' 
     ORDER BY S.gpa, S.name, a2 
     LIMIT 3
+
+
+
+
+
+SELECT DISTINCT AVG(S.gpa) 
+    FROM Student S 
+    WHERE S.dept = 'CS'  
+
+
+SELECT DISTINCT AVG(S.gpa), S.dept 
+    FROM Student S 
+    GROUP BY S.dept 
+
+
+SELECT AVG(S.gpa), S.dept 
+    FROM Student S 
+    GROUP BY S.dept 
+    HAVING COUNT(*) > 2
+
+
+SELECT S.dept, AVG(S.gpa), COUNT(*) 
+    FROM Student S 
+    WHERE S.gender = 'F' 
+    GROUP BY S.dept 
+    HAVING COUNT(*) >= 2 
+    ORDER BY S.dept; 
+
