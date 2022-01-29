@@ -150,5 +150,6 @@ Assuming E > V, this is just `O(E log V)`.
 ![Kruskal Analysis](../image/MST9.png) 
 
 
-### Running Time Analysis Comparison
+### Running Time Analysis Comparison 
+
 ![Summary](../image/MST10.png)
