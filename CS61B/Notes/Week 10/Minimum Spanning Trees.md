@@ -2,7 +2,7 @@
 
 ## Definition
 
-Given an undirected graph, a spanning tree T is a subgraph of G, which has the following properties.
+Given an undirected graph, a spanning tree T is a subgraph of G, which has the following properties. And it is called "spanning" since all vertices are included.
 * Is connected.
 * Is acyclic.
 * Includes all of the vertices.
