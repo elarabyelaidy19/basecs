@@ -7,8 +7,13 @@ Given an undirected graph, a spanning tree T is a subgraph of G, which has the f
 * Is acyclic.
 * Includes all of the vertices.
 
+
+![MST](../image/MST1.png)
+
 A minimum spanning tree is a spanning tree of minimum total weight.
-A shortest paths tree depends on the start vertex, while there is no source for a minimum spanning tree.
+A shortest paths tree depends on the start vertex, while there is no source for a minimum spanning tree. 
+
+
 
 ## Cut Property
 
@@ -16,7 +21,7 @@ A shortest paths tree depends on the start vertex, while there is no source for 
 * A crossing edge is an edge which connects a node from one set to a node from the other set.
 * Given any cut, minimum weight crossing edge is in the MST.
 
-![Cut Property](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-04-14%20at%208.57.22%20PM.png)
+![Cut Property](../image/MST2.png)
 
 ## Generic MST Finding Algorithm
 
@@ -29,7 +34,12 @@ A shortest paths tree depends on the start vertex, while there is no source for 
 
 * Start from some arbitrary start node.
 * Repeatedly add shortest edge that has one node inside the MST under construction.
-* Repeat until V-1 edges.
+* Repeat until V-1 edges. 
+## Before
+![Prim's Algorithm](../image/MST4.png) 
+
+## After 
+![Prim's Algorithm](../image/MST5.png)
 
 ### Implementation
 
@@ -81,13 +91,24 @@ Priority Queue operation count, assuming binary heap based PQ.
 * Decrease priority: `O(E)`, each costing `O(log V)` time.
 
 Overall runtime: `O(V * log(V) + V * log(V) + E * logV)`.
-Assuming E > V, this is just `O(E log V)`.
+Assuming E > V, this is just `O(E log V)`.  
+
+![Analysis Summary](../image/MST8.png)
+
+
 
 ## Kruskal’s Algorithm
 
 * Consider edges in increasing order of weight.
 * Add edge to MST unless doing so creates a cycle.
-* Repeat until V-1 edges.
+* Repeat until V-1 edges. 
+
+
+### Before 
+![Kruskal's Algorithm](../image/MST6.png) 
+
+### After 
+![Kruskal's Algorithm](../image/MST7.png)
 
 ### Implementation
 
@@ -124,4 +145,10 @@ public class KruskalMST {
 * Union: `O(V)`, each costing `O(log V)` time.
 * IsConnected: `O(E)`, each costing `O(log V)` time.
 Overall runtime: `O(E + V log * V + E log * V)`.
-Assuming E > V, this is just `O(E log V)`.
+Assuming E > V, this is just `O(E log V)`. 
+
+![Kruskal Analysis](../image/MST9.png) 
+
+
+### Running Time Analysis Comparison
+![Summary](../image/MST10.png)
