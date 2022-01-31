@@ -30,9 +30,8 @@ Search Trees could explicitly track the order of items. To build a tree of objec
 * X-Based Tree: Compare objects only based on their x-coordinate.
 * Y-Based Tree: Compare objects only based on their y-coordinate.
 
-Here's an example of X-Based Tree:
-![X-Based Tree](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-15%20at%2011.40.56%20AM.png)
-![X-Based Tree](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-15%20at%2011.41.02%20AM.png)
+Here's an example of X-Based Tree: 
+![X-Based Tree](../image/k-d1.png)
 
 If a range finding operation is performed in the green rectangle, the right child of the root node is ignored. Skipping searching through parts of the search tree is called "pruning".
 
@@ -43,13 +42,15 @@ If a range finding operation is performed in the green rectangle, the right chil
 
 The QuadTree is a tree data structure which could partition a two-dimensional space by recursively subdividing it into four quadrants.
 
-![QuadTree](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-16%20at%201.33.04%20AM.png)
-![QuadTree](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-16%20at%201.33.08%20AM.png)
+![QuadTree](../image/k-d2.png) 
+
+![QuadTree](../image/k-d3.png)) 
+
 
 * Each node has exactly four children: The northwest, northeast, southeast, and southwest region.
 * The node B is inserted as the NE child of node A, since B resides in the northeast quadrant of A.
 
-![QuadTree](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-16%20at%201.46.01%20AM.png)
+![QuadTree](../image/k-d4.png)
 
 If a range finding operation is performed in the green rectangle, from any node the quadrants which the green rectangle does not lie within could be ignored and pruned away.
 
@@ -64,13 +65,13 @@ For the 2-D case, it partitions like an X-based Tree on the first level, then li
 * Each node has two children, since each level is partitioned into "greater" and "less than".
 * Items equal in one dimension should always be stored in the "greater" part of its parent node.
 
-![K-D Tree](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-16%20at%205.33.01%20PM.png)
+![K-D Tree](../image/k-d5.png)
 
-![K-D Tree](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-16%20at%201.57.42%20AM.png)
 
-### Nearest Neighbor
 
-![K-D Tree](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-16%20at%205.42.50%20PM.png)
+### Nearest Neighbor 
+
+![K-D Tree](../image/k-d6.png)
 
 * Start at the root and compute its distance to the query point, and save that as the minimum distance.
 * For each subspace the node partitioned into, try to find a better point by computing the shortest distance between the query point and the edge of the subspace.

@@ -29,7 +29,6 @@ public class MSTKruskal {
         } 
     }
     
-
     public Iterable<Edge> edges() { 
         return mst;
     }

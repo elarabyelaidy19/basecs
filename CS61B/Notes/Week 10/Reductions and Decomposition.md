@@ -30,8 +30,7 @@ dfs(vertex, marked, postOrder):
     postOrder.add(vertex)
 ```
 
-## Shortest Path Algorithm for DAGs
-
+## Shortest Path Algorithm for DAGs.
 * Visit vertices in topological order.
 * On each visit, relax all outgoing edges.
 
