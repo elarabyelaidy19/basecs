@@ -3,3 +3,4 @@
 
 -[] CS61B UC Berkeley  
 -[] CS186 UC Berkeley 
+-[] CS169 UC Berkeley
