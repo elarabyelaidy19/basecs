@@ -103,6 +103,21 @@ public class TrieHT<Value> {
             collect(x.next[c], prefix, pattern, results); 
             prefix.deleteCharAt(prefix.length()-1);
         }
+    } 
+
+    public String longestPrefixOf(String query) { 
+        if (query == null) throw new IllegalArgumentException(); 
+        int length = longestPrefixOf(root, query, 0, -1);
+        if (length == -1) return null; 
+        else return query.substring(0, length);
+    }
+
+    private int longestPrefixOf(Node x, String query, int d, int length) { 
+        if ( x == null) return length; 
+        if ( x.val != null) length = d; 
+        if ( d == query.length()) return length; 
+        char c = query.charAt(d); 
+        return longestPrefixOf(x.next[c], query, d+1, length);
     }
 
 }
