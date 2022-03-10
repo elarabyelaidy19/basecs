@@ -12,7 +12,7 @@ To check if the trie contains a key, walk down the tree from the root along the 
 
 For example, the following trie contains `["sam", "sad", "sap", "same", "a", "awls"]`.
 
-![Tries](https://joshhug.gitbooks.io/hug61b/content/assets/Screen%20Shot%202019-03-14%20at%2012.47.38%20AM.png "Tries")
+![Tries](../image/trie1.png)
 
 * `contains("a)`: true, the final node is marked
 * `contains("sa")`: false, the final node is not marked
