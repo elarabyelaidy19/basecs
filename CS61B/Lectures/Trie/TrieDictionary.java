@@ -1,11 +1,13 @@
-public class Trie { 
+class TrieDictionary {
+    
+   private class Trie { 
     private class TrieNode { 
         Map<Character, TrieNode> edges;     
         boolean isWord; 
 
         public TrieNode() { 
             this.edges = new HashMap<>(); 
-            this.isWords = false;
+            this.isWord = false;
         }
 
 
@@ -15,9 +17,10 @@ public class Trie {
 
     public Trie() { 
         this.root = new TrieNode();
-    }
+    } 
+ 
 
-    public void insert(TrieNode root, String word) { 
+    public void insert(String word) { 
         TrieNode currentNode = root; 
         for(char c : word.toCharArray()) {  
             if(!currentNode.edges.containsKey(c)) { 
@@ -26,28 +29,6 @@ public class Trie {
             currentNode = currentNode.edges.get(c);
         }
         currentNode.isWord = true;
-    } 
-
-    public boolean search(TrieNode root, String word) { 
-        TrieNode currentNode = root; 
-        for(char c : word.toCharArray()) { 
-            if(!currentNode.edges.containsKey(c)) { 
-                return false;
-            }
-            currentNode = currentNode.edges.get(c);
-        }
-        return currentNode.isWord;
-    } 
-
-    public boolean startWith(TrieNode root, String word) { 
-        TrieNode currentNode = root; 
-        for(char c : word.toCharArray()) { 
-            if(!currentNode.edges.containskey(c))  
-                return false; 
-            currentNode = currentNode.edges.get(c);
-        }
-
-        return true;
     } 
 
     public boolean canBuilt(String word) { 
@@ -62,7 +43,8 @@ public class Trie {
                 return false;
         }
         return true;
-    }
+    } 
+   }
 
     public String longestWord(String[] words) { 
         if(words == null || words.length == 0) 
@@ -80,5 +62,5 @@ public class Trie {
             }
         }
         return answer;
-    }
+    } 
 }
