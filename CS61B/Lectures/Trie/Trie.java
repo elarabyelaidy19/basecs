@@ -49,36 +49,4 @@ public class Trie {
 
         return true;
     } 
-
-    public boolean canBuilt(String word) { 
-        TrieNode currentNode = root; 
-        for(char c : word.toCharArray()) { 
-            if(!currentNode.edges.containsKey(c))  
-                return false; 
-
-            currentNode = currentNode.edges.get(c); 
-
-            if(!currentNode.isWord) 
-                return false;
-        }
-        return true;
-    }
-
-    public String longestWord(String[] words) { 
-        if(words == null || words.length == 0) 
-            return null; 
-
-        Trie trie = new Trie(); 
-        for(String word : words) 
-            trie.insert(word); 
-
-        String answer = null; 
-        for(String word: words) { 
-            if(trie.canBuilt(word)) { 
-                if(answer == null || answer.length() < word.length() || (word.length() == answer.length() && word.compareTo(answer) < 0)) 
-                    answer = word; 
-            }
-        }
-        return answer;
-    }
 }
