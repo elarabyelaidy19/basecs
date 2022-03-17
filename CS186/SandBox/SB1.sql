@@ -73,3 +73,18 @@ SELECT S.dept, AVG(S.gpa), COUNT(*)
     HAVING COUNT(*) >= 2 
     ORDER BY S.dept; 
 
+
+
+SELECT name 
+from dogs 
+WHERE owner_id = 3 
+
+SELECT name, age 
+from dogs 
+ORDER BY age DESC, name 
+LIMIT  
+
+SELECT breed, COUNT(*) 
+from dogs
+GROUP BY breed
+HAVING COUNT(*) > 1
