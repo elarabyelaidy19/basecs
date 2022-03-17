@@ -7,7 +7,25 @@
 - instance is a set of data satisfying the schema
 - tables is physical data independence.The logical definition of the data remains
 unchanged, even when we make changes to the
-actual implementation
+actual implementation 
+
+
+## SQL 
+ - SQL is Declarative, say what you want to do, not how to do it. 
+ - two types of SQL: 
+    - DDL: Data Definition Language, create tables, alter tables, drop tables, etc. 
+    - DML: Data Manipulation Language, insert, update, delete, etc. 
+- RDMS: is responsible for choose the algorthim to implement the SQL. 
+
+## DDL SQL 
+- **Primary key:** unique identifier for each record.
+    - provide a unique lookup key for each record. 
+    - can not have any duplicates. 
+    - can be mad of multiple columns.
+- **Foreign Key:** reference to another table.  
+    - it point to a primary key of the referenced table. 
+    - does not need to have the same name as the revernced key.
+
 ## Querying language 
   - ## Querying table 
     - From tells what table to query, where tells what the condition to query on and which specific rows to return, select what columns to return. 
@@ -58,7 +76,11 @@ actual implementation
     from person 
     order by age desc, age 
     limit 2
+```
 
+## SQL Flavors 
+- **Distinct**: remove duplicate rows before output. 
+- **AS**: Alias name. 
 
 
 
