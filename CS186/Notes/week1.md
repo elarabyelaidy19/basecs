@@ -78,12 +78,18 @@ actual implementation
     limit 2
 ```
 
-## SQL Flavors 
-- **Distinct**: remove duplicate rows before output. 
-- **AS**: Alias name. 
 
-
-## Querying multiple tables 
+## Querying multiple tables  
+ - ## Slef join  
+    - the self join is a join that is performed on the same table, you can use table aliase join on itself.
+    - ```sql 
+        SELECT x.sname AS sname1,
+            x.age AS age1,
+            y.sname AS sname2,
+            y.age AS age2
+            FROM Sailors AS x, Sailors AS y
+            WHERE x.age > y.age 
+        );
  - ## Cross join 
     - the simplest way to join two tables is to use a cross join. also known as cross product.  
     - it's the result of combining every row from the left table with every row from the right table. 
@@ -170,3 +176,55 @@ actual implementation
     - One thing to note is that subqueries in the FROM cannot usually be correlated withother tables listed in the FROM. 
     - if you want to reuse temporary tables, you must use the common table expression **with clause**. 
     - if you want to use it in another query use VIEW. 
+
+- **ARGMAX**the argmax is a function that returns the row with the maximum value of the specified column. return multiple rows if there are multiple rows with the same maximum value. 
+
+- **VIEWS**: used as a temporary table, to query from it. used instead of subqueries. 
+- used as a subroutine to query from another table.
+```sql 
+CREATE VIEW Redcount AS
+SELECT B.bid, COUNT(*) AS scount
+FROM Boats B, Reserves R
+WHERE R.bid=B.bid AND B.color=‘red’
+GROUP BY B.bid;
+
+SELECT * from Redcount WHERE scount<10;
+``` 
+
+- **Common Table Expressions**: used to reuse temporary tables. on the fly 
+```sql 
+    WITH Redcount(bid, scount) AS
+        (SELECT B.bid, COUNT (*)
+        FROM Boats B, Reserves R
+        WHERE R.bid = B.bid AND B.color = 'red'
+        GROUP BY B.bid)
+
+        SELECT * FROM Reds
+        WHERE scount < 10
+    ```
+
+## SET 
+- A UNION B == A OR B, distinct rows from A or B. 
+- A INTERSECT B == A AND B, distinct rows from A and B. 
+- A EXCEPT B == A BUT NOT B, distinct rows from A and not B. 
+
+![SET](./img/db2.png)
+
+
+## Multisets 
+- can have duplicates values. 
+- A UNION ALL B -> sum of cardinality of A and B. 
+- A INTERSECT ALL B -> min of cardinality of A and B. 
+- A EXCEPT ALL B -> difference of cardinality of A and B. 
+
+![SET](./img/db3.png) 
+ 
+
+- A UNION B -> perform set operation. 
+- A UNION B -> Perform multi-set operation. 
+
+## SQL Flavors 
+- **Distinct**: remove duplicate rows before output. 
+- **AS**: Alias name. 
+- **LIKE** 'B_%' any string that starts with B, B.* any string have B. 
+- **
