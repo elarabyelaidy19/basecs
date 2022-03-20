@@ -47,10 +47,37 @@
         -  insert index entry pointing to L2 into L.  
             - else recursively split and **push up** from parents.  
 
-## Before Inserting B+ Trees
+### Before Inserting B+ Trees
 ![](./img/db16.png) 
 
 
-## After Inserting B+ Trees
+### After Inserting B+ Trees
 ![](./img/db17.png)
+
+
+## Deleting B+ Trees 
+- occupency invariants not inforced during deletion. 
+- just delete leaf entries and save space for next insertion.  
+-  if leaf is completely empty, taht's ok 
+
+
+## B+ Tree Bulk Loading 
+- Build index on Large table from scratch. it will take a long time, search from root and insert leaving half empty Leaves. modify random pages. 
+- **Smarter Way** Sort input records by key, fill leaf page by fill factor 3/4. 
+-  when parent is full split.  
+
+![](./img/db18.png)  
+
+
+# Summary
+
+- B+ Tree is a powerful dynamic indexing structure
+- Inserts/deletes leave tree height-balanced; logFN cost
+- High fanout (F) means height rarely more than 3 or 4.
+- Higher levels stay in cache, avoiding expensive disk I/O
+- Almost always better than maintaining a sorted file.
+- Widely used in DBMSs!
+- Bulk loading can be much faster than repeated inserts for creating a B+ tree on a large
+data set.
+
 
