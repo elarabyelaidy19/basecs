@@ -201,7 +201,7 @@ SELECT * from Redcount WHERE scount<10;
 
         SELECT * FROM Reds
         WHERE scount < 10
-    ```
+```
 
 ## SET 
 - A UNION B == A OR B, distinct rows from A or B. 
@@ -227,4 +227,3 @@ SELECT * from Redcount WHERE scount<10;
 - **Distinct**: remove duplicate rows before output. 
 - **AS**: Alias name. 
 - **LIKE** 'B_%' any string that starts with B, B.* any string have B. 
-- **

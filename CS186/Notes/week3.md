@@ -81,3 +81,63 @@
 data set.
 
 
+
+# Refinmets on indices 
+- issues to consider in any index Structure.
+    - Query Support: types of queries that can be performed on an index.  
+    - choice of search key 
+    - Data Entry Storage. 
+    - Variable length keys.
+    - Cost of index. 
+
+## Query Support
+- Basic Selections: in single dimension 
+    - equality 
+    - range
+- Exotic Selections: in multi-dimension 
+    - 2d Box/Circle/Polygon
+    - 3d R-tree/K-d Tree 
+    - nearest neighbor queries
+    - Reqular Expressions, Genome Strings.
+    - geo-spatial queries. 
+
+## Search Key and Ordering 
+- in an orederd index, the keys is orderd lexicographically. by the search key, order 1st column, if ==, then order 2nd column, and so on.
+- Search by rang using Composite Key. 
+
+## Data Entry Storage
+- the repersentation of data entry in index, actual data Or Reference to data. 
+- Three types of data entry in index: 
+    - **Value**: record data stored in the index file. 
+    - **Reference**: index contains key and record id<PID, RId>. 
+    - **List of Reference**: Key and a list of matching records ids. 
+- indexing by reference required to support multible indexes per table.
+
+
+## Clustered and Non-Clustered Indexes
+* ### Clustered Indexes 
+    - sort the haep file, leave some space on each block for future inserts. 
+    - index entries direct search to data entries.
+    - gives fairly sequential access to data in the haep file. 
+    - **faster for rang queries.** 
+    ![](./img/db19.png)
+    - **Order of data records is “close to”, but not identical to, the sort order.** 
+    ![](./img/db20.png) 
+
+
+## Clustered Indexes vs Non-Clustered Indexes
+- ### clustered Pros 
+    - efficient for range queries. 
+    - potential locality benfits, faster for sequential access and prefetching. 
+    - support certain types of comperissions.  
+- ### clustered cons 
+    - more expensive to maintains, periodically update heap order, resort, reclustered heap file incrementally. 
+    - heap file usually only packed 2/3 to accomodate new data, leaving space for future inserting. 
+
+
+## Variable Length Keys  
+- fill factor is the number of bytes.
+- compress prefix/suffix of key to save space. 
+
+## B+ tree cost Model  
+![](./img/db21.png)
