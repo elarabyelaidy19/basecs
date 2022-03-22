@@ -136,6 +136,11 @@ actual implementation
         form student natural join course 
     - not often used in practice because they are confusing.
 
+
+ - ## join invariants
+    - The different types of joins determine what we do with rows that don’t ever match the “join condition”
+![joins](./img/db22.png)
+
 ## Naming Conflicts 
 - if there is a naming conflict, which occur when two tables have the same column name, the column name will be prefixed with the table name. 
 - we should specify which table cloumn we are referring to. 
