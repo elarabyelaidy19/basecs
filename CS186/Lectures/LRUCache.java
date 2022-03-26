@@ -9,14 +9,14 @@ public class LRUCache<K, V> {
 
     private CacheNode<K, V> tail;
 
-    private static class CacheNode<K, V> { 
-        K key; 
-        V val; 
+    private static class CacheNode<K, V> {
+        K key;
+        V val;
 
         CacheNode<K, V> next; 
         CacheNode<K, V> prev; 
 
-        public CacheNode(K key, V val, CacheNode<K, V> next, CacheNode<K, V> prev) { 
+        public CacheNode(K key, V val, CacheNode<K, V> next, CacheNode<K, V> prev) {
             this.key = key; 
             this.val = val; 
             
@@ -27,12 +27,12 @@ public class LRUCache<K, V> {
     }
 
 
-    public LRUCache() { 
+    public LRUCache(int capacity) { 
         this.capacity = capacity;
         clear();
     }
 
-    public String toString() { 
+     public String print() {
         String s = ""; 
 
         CacheNode<K, V> curr = head;
@@ -65,7 +65,7 @@ public class LRUCache<K, V> {
         CacheNode<K, V> curr = head.next;
 
         while(curr != tail) { 
-            if(curr.key.equals(key)) { 
+            if(curr.key.equals(key)) {
                 moveNodeToTheEnde(curr);
                 return curr.val;
             }
@@ -101,7 +101,6 @@ public class LRUCache<K, V> {
             // if the key exits in the LRU update it's value and move it to the end  
             if(newNode.key.equals(curr.next.key)) { 
                 newNode.next.val = curr.val; 
-                moveNodeToTheEnde(newNode);
             }
 
             if(cachsize > capacity) { 
@@ -115,5 +114,31 @@ public class LRUCache<K, V> {
 
             curr = curr.next;
         }
+    } 
+
+
+    public static  void main(String[] args) {
+        LRUCache<Integer, Integer> cache = new LRUCache<Integer, Integer>(4);
+		cache.LRUPut(1, 5);
+		System.out.println("cache after calling LRUPUT(1,5): " + cache.toString());
+		cache.LRUPut(2, 2);
+		System.out.println("cache after calling LRUPUT(2,2): " + cache.toString());
+		cache.LRUPut(3, 7);
+		System.out.println("cache after calling LRUPUT(3,7): " + cache.toString());
+		cache.LRUPut(4, 9);
+		System.out.println("cache after calling LRUPUT(4,9): " + cache.toString());
+		cache.LRUPut(1, 9);
+		System.out.println("cache after calling LRUPUT(1,9): " + cache.toString());
+		System.out.println("LRUGET(3) returned: " + cache.LRUGet(3));
+		System.out.println("cache after calling LRUGET(3): " + cache.toString());
+		cache.LRUPut(5, 10);
+		System.out.println("cache after calling LRUPUT(5,10): " + cache.toString());
+		cache.LRUGet(4);
+		System.out.println("LRUGET(4) returned: " + cache.LRUGet(4));
+		System.out.println("cache after calling LRUGET(4): " + cache.toString());
+		cache.LRUGet(10);
+		System.out.println("cache after calling LRUGET(10): " + cache.toString());
     }
 }
+
+
