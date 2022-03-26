@@ -87,11 +87,33 @@ public class LRUCache<K, V> {
         node.next = tail; 
         node.prev = prevTail; 
         cachsize++;
+    } 
+
+    public void LRUPut(K key, V val) {
+        CacheNode<K, V> curr = head.next; 
+        CacheNode<K, V> prevTail = tail.prev;
+        CacheNode<K, V> newNode = new CacheNode<K, V>(key, val, tail, prevTail); 
+        prevTail.next = newNode; 
+        tail.prev = newNode; 
+        cachsize++;
+
+        while(curr != tail) { 
+            // if the key exits in the LRU update it's value and move it to the end  
+            if(newNode.key.equals(curr.next.key)) { 
+                newNode.next.val = curr.val; 
+                moveNodeToTheEnde(newNode);
+            }
+
+            if(cachsize > capacity) { 
+                CacheNode<K, V> first = head.next; 
+                CacheNode<K, V> afterFirst = first.next;
+
+                head.next = afterFirst; 
+                afterFirst.prev = head; 
+                cachsize--;
+            }
+
+            curr = curr.next;
+        }
     }
-
-    
-
-
-
-    
 }
