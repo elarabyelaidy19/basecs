@@ -141,3 +141,66 @@ data set.
 
 ## B+ tree cost Model  
 ![](./img/db21.png)
+
+
+# Buffer Managment
+
+![](./img/db23.png)
+## Buffer Manager 
+- buffer manager is responsible for managing pages in memory **(the buffer pool)** and recvives page requests from the file and index manager. eviction/addition of pages is done by the buffer manager with communication with the disk space manager.
+
+## Buffer Pool
+- memory is converted into a buffer pool by partioning the spaces int **Frames** that **Pages** can placed in. pages fit perfectly in frames. 
+
+![](./img/db24.png)
+- to effectively manage the buffer pool, buffer manager allocates additional space into memory for metadata the table contains.
+    - **Frame Id**: each frame has a unique id associated with a memory address. 
+    - **Page Id**: associated with Frame id, determines which frame contains tha page.
+    - **Dirty Bit**: Y/N verifying whether or not page has modified. 
+    - **Pin Bit**: 1/0 tracking number of requestors currentely using the page.
+
+- concurrent operations are supported by concurrency control. 
+- System Crash solved by recovery control.
+
+## Handling Page Requests
+- if requested page in the 
+    - the page **pin count** is incremented and the page memory address is returned. 
+- if requested page is not in the buffer pool 
+    - if buffer pool is not full. 
+        - request page from disk space manager add to buffer pool **pin count** incremented, and memory address returned to user. 
+    - if buffer pool is full. 
+        - **Replacement policy** used to determine which page to evict. 
+        - choice of replacement policy depends on page access pattern counting number of **pages hit** (page in memory). 
+        - if the evicted page is dirty, it is written to disk to ensure that updates are persisted.
+
+## LRU Replacement Policy
+- Pinned frames not evicted.
+- track time each frame was last used, store column in metadata, replace the min, unpinned to replace.
+- Good for frequently accessed pages(temporal locality).
+- costly for fin the min(priority queue) another alternative is **Clock**.
+- LRU Perform poorly when set of pages accessed multiple time repeatedly causing **sequntial flooding** 0 hits.
+![](./img/db25.png)
+
+
+## Clock Replacement Policy
+- treats frames as a circular list of frames. 
+- clock hand point to the next page to consider. 
+- ref bit approximate recenty refernced pages.
+- if current pin count > 0, move clock hand to next page.
+- if current pin count = 0, and ref bit = 1, clear ref bit and skip. 
+- if current pin count = 0, and ref bit = 0. 
+    - replace 
+    - set pin to 1.
+    - set ref bit to 1.
+    - advance clock hand.
+    - return pointer to page.
+
+![](./img/db26.png) 
+
+ 
+## Most Recently Used Replacement Policy
+- instead of evicting the least recently used page, evict the most recently used page. 
+- it's commonly used for sequential scanning.
+- improve sequential scanning by prefetch. 
+- prefetching amortize random I/O overhead for disk. 
+- allow computation to continue while disk is busy.
