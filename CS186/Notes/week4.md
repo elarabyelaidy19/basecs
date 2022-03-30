@@ -45,6 +45,9 @@ one thread doing I/O and Computation.
     - A File F produce an output file Fh with content R arranged on disk that two records that have the same key are stored consecutively, no two same records sperated by a record with differnt hash value.
 
 
+## I/O 
+in Database systems we only care about # of I/O operations. because of how time consuming it is to read and write to disk. when developing an algorithm, we need to think about how much I/O operations it will take and minimize the # of I/O it will incure.
+
 ## Sorting 
 ## Two Way sorting
 - pass 0 (conquer a batch) 
@@ -58,5 +61,75 @@ one thread doing I/O and Computation.
     - keep doing until Output buffer is full, write it to memory.
 ![](./img/db30.png)
 
-## General External Merge Sort
+**Cost Model**: 
+**2N * (1 + (log2 N)) I/Os** 
 
+## General External Merge Sort
+- the result of merging two sorted merges called **sorted run**
+- tow optimization 
+    - **ONE**rather than sort individual pages, load B pages and sort them all at once. 
+    - **SECOND** merge more than sorted runs at a time. 
+- the conquring phase produce (N/B).ceil sorted runs. 
+- during the merging we are dividing number of sorted runs by B-1, so the base of our log is b-1.
+- number of pages in each sorted run 0 is B, in pass 1 = B * B-1
+
+![](./img/db31.png)
+## anlayzing the algorithm
+- every pass require 2 * N I/O operations. where N is the number of pages, read in every page and write it after modification.
+- you always need one pass for the first pass 0. 
+- **Passes** 1 + (logb-1 N/B).ceil
+- **I/Os** 2N * (1 + (logb-1 N/B).ceil  
+- **Minimum num of buffer pages need to to sort N pages in X passes** **N/B(B-1) <= X**
+
+
+# Hashing 
+## External Hashing
+sometimes ypu need to group together the same values, and remove duplicates.
+in databases grouping together the same values is called **Hashing**. 
+we can not doing hashing in memory, we need to do it out-of-core.
+
+## Hashing Algorithm
+Because we can not fit all of the data in memory at once we need to build several hash tables and concatenate them together. and we need to guarantee that each value has the same hash value grouped together in memory.
+
+### Divide and Conquer 
+- Divide: 
+    - partitioning passes, hash each record to B-1 partitions, every partition have similar hash values. 
+    - when output buffer is full, write it to disk and insure taht all pages from this partion are adjacents. 
+    - if the partition is bigger than B, we partition it again using differnt hash function, we can do that recursively.
+- Conquer: 
+    - constructing hash tables. 
+
+![](./img/db32.png)
+
+
+## Cost of External Hashing
+- 4N I/Os 
+
+## Sorting Vs Hashing
+- Sorting is conquer and divide, Hashing is divide and conquer. 
+- sorting is **4N** I/Os, Hashing is **~4N** I/Os. where N is the number of pages.
+
+
+## Parallel Hashing 
+- **phase 1**: shuffles data across the machines using hash function hn to determines which machine for this record. 
+- **phase 2**: recivers procced with phase 1 as a data stream and do external hashing. 
+
+![](./img/db33.png)
+
+## Parallel Sorting
+- **Phase 1**: shuffle data across the machines, split data in ranges every machine has a range od sorted pages. 
+- **Phase 2**: recivers procced with phase 1 as a data stream and do external sorting.
+- avoid data skewed. 
+![](./img/db34.png)
+
+## Sort vs Hashing
+- ## sorting 
+    - output is sorted.
+    - allow duplicate values.
+    - scales linearly with the number of input records. 
+    - **Cons**: skewed data
+- ## Hashing 
+    - output is not sorted.
+    - no duplicate values.
+    - scales linearly with number of duplicates values.  
+    - shuffle eqully across machines.
