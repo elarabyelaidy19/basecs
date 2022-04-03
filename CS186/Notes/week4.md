@@ -133,3 +133,38 @@ Because we can not fit all of the data in memory at once we need to build severa
     - no duplicate values.
     - scales linearly with number of duplicates values.  
     - shuffle eqully across machines.
+
+
+# Relational Algebra
+## Relational Algebra
+- parser parse SQL query to relational algebra, relational alegebra can be expressed as tree of operators called**logical query plan**. 
+- **logical query plan** is a strategey for excuting query expressed as a tree of operators. 
+
+**SQL** is a declarative language, it is a language that describes the data in a database. 
+**Relational Algebra** operational description of a computation.
+
+**DBMS** internally transform SQL query into relational algebra, and then execute the relational algebra expresssion, manupilate and siplify it, and figure out the best mechanism to execute it.
+
+![](./img/db35.png)
+
+
+## Relational Algebra Preliminaries
+**Closed** results is also a reltion instance.
+**Typed** input schema determine the type of the output schema. 
+**Set Semantics** no duplicates in a relation instance in contrast of SQl.
+
+## Relational Algebra Operators
+- ### Unary Operators single relation  
+    - **Projection**: select a subset of columns from a relation.
+    - **Selection**: select a subset of records from a relation.
+    - **Renaming**: rename the columns of a relation.
+    - **Aggregation**: aggregate the values of a relation.
+- ### Binary Operators two relations 
+    - **Union**: union two relations, same num/type of tuples.
+    - **Difference**: difference of two relations.
+    - **Cross-Product**: cartesian product of two relations.
+
+- ### compound operators
+    - **Theta-Join**: join two relations on a logical expression. 
+    - **Equi-Join**: theta join with theta beign a conjuction of equality. 
+    - **Natural-Join**: equi-join on all matching columns.
