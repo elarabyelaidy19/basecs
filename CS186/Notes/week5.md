@@ -144,5 +144,57 @@ end
  - scan R once + scan S as many times as there are blocks in R
 
 
-### Index nested loop join
-- 
+### Index nested loop join 
+- optimizer selects index join if it is found an index on both relations.
+- when we have index on S that is on the appropriate key, we can use index nested loop join. 
+- for each record r in R 
+    - for each record s in S 
+        - if join condition(ri, si) 
+            - add(r, s) to buffer   
+
+### Sort merge join
+- requires equality predicate on both relations. 
+**Algorithm**: 
+- sort R and S by join conidtion, all equals key are consecutive. 
+**Cost**: 
+- sort then join -> sort R + sort S + [R]+[S] 
+- we can do refinement of sort merge join by combining last pass of merge-sort and join pass.
+```ruby 
+do  
+    if(!mark) 
+        while(s > r) { advance r} 
+        while(r > s) { advance s} 
+        mark = s 
+    end  
+
+    if(s == r) 
+        result = [r, s] 
+        advance s
+        return result
+    else 
+        reset to mark 
+        advance r
+        mark = null
+    end
+end 
+```
+
+![sort merge join](./img/db36.png)
+
+## Hash join
+- ### Two passes  
+    - ### Partitioning 
+        - partition tuples fromm R and S by join key and store them in scratch disk. 
+    
+    - ### Build & Probe 
+        - build hash table on R and probe hash table on S. 
+
+![hash join](./img/db37.png)
+
+### Cost
+Partitioning phase: read+write both relations
+⇒ 2([R]+[S]) I/Os
+• Matching phase: read both relations, forward output
+⇒ [R]+[S]
+• Total cost of 2-pass hash join = 3([R]+[S])
+• 3 * (1000 + 500) = 4500
