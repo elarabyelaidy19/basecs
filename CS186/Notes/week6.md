@@ -79,4 +79,41 @@
 - ### Join Algorithms 
     - changing the join algorithm can change the cost.
 - ### Projection pushdown 
-    - 
+    - pushing down projection to the left side of the join. 
+- ### Indexes 
+    - indexs clustered or not.
+
+
+# Costing and Searching 
+
+## What we need to do Query Optimization? 
+given a closed set of operators relatinal operators that takes table in and table out. 
+this operators has logical equivilance(cascade, commute) and phsical equivelnce(types of algo). 
+### plan space
+given this set of operators we have plan space which all the possible query plans that produce the same correct answer. this plans defined by the relationsl equivelence and physical equievelnce.
+
+### Cost Estimation
+what is the cost of our operators. and estimation to the size of data that goes into this operators. 
+the size of data is based on the catalog info whta is size of the table.
+
+### Search Algorithm
+search algorithms that goes through the search space and find the best plan with the least cost. 
+
+## Big Piecture of System R Optimizer 
+**plan space** too big plans must be pruned. if many plans have the same **overpriced** subplan ignore them. avoid cross product. consider only the left deep plans.s
+**cost estimation** 
+- stats in system catalog used to estimates the size of data and cost. 
+- cinsiders compination of I/O and CPU cost.
+**search algorithm** 
+- System R uses a Dynamic Programming based search algorithm. 
+- **Dynamic Programming**: optimization technique for problems with subcomponents. 
+
+## Query Blocks 
+- query blocks are the unit of work that the optimizer works on. you want to brak your query into smaller blocks optimizing one block at atime. 
+- flatten your queries blocks into single one query block. query rewriter. 
+
+### phisical properties 
+- output of an operator Sorted, Hash Grouping. 
+- opertors that produce properties in certain form(sorted). index, sort, hash grouping. 
+- merge join require inputs to be sorted.
+- merge join and nested loop join preserves the sort order of inputs.
