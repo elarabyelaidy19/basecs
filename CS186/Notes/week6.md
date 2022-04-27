@@ -101,6 +101,8 @@ search algorithms that goes through the search space and find the best plan with
 
 ## Big Piecture of System R Optimizer 
 **plan space** too big plans must be pruned. if many plans have the same **overpriced** subplan ignore them. avoid cross product. consider only the left deep plans.s
+- System R consider only the left joins tree because it restrict the plan space allow us to fully piplined the plans intermidiate results not written.
+
 **cost estimation** 
 - stats in system catalog used to estimates the size of data and cost. 
 - cinsiders compination of I/O and CPU cost.
@@ -112,8 +114,64 @@ search algorithms that goes through the search space and find the best plan with
 - query blocks are the unit of work that the optimizer works on. you want to brak your query into smaller blocks optimizing one block at atime. 
 - flatten your queries blocks into single one query block. query rewriter. 
 
-### phisical properties 
+### physical properties 
 - output of an operator Sorted, Hash Grouping. 
 - opertors that produce properties in certain form(sorted). index, sort, hash grouping. 
 - merge join require inputs to be sorted.
-- merge join and nested loop join preserves the sort order of inputs.
+- merge join and nested loop join preserves the sort order of inputs. 
+
+## Cost Estimation
+- for each plan must estimate the total cost. 
+- estimate the cost of each operators depedns on the cardinalities. and size of the result of each operator. it will be input to the next operator.
+- in system R the cost is boiled down to **#IO + CPU-factor*#tuples**.
+
+### Statistics and Catalog 
+- catalog contains the statistics of the tables. 
+- updated periodically.
+![catalog](./img/db48.png) 
+
+### Selectivity 
+- reflects the impact of the query in reducing the number of tuples returned.
+- sel = |output| / |input|.
+- result of size estimation. 
+
+### Slectivity With Histograms
+- the idea is divide the input into buckets of equla values and count the number of tuples in each bucket. 
+![histogram](./img/db49.png) 
+
+**Selectivity Conjunction**
+- multiply of sleectivity of each conjuct.
+![disjunction](./img/db50.png) 
+
+**Selectivity Disjunction**
+- sum of sleectivity of each disjunct - multiply of two disjunct.  
+- 50% + 46% - (50% × 46%) = 73% 
+
+**Selectivity Not** 
+- 1 - sel.
+
+### Join Selectivity
+- Simply compute the selectivity of all predicates
+- And multiply by the product of the table sizes
+
+
+## Search Algorithm
+
+### Single table plans
+- single table quries includes select, project, and agg. 
+- consider each access path file scan, index scan, and sort.
+- choose the one with the least cost.
+- slection, projection, done on the fly.
+- result pipliend into grouping/aggregation. 
+
+### Cost Estimation for Single Table Plans with index 
+- clusterd index featch adjacent pages contains index indecies are adjacent. 
+- non-clustered index all pages that may be contains index.
+![index](./img/db51.png)
+
+
+
+## Dynamic Programming
+
+
+
