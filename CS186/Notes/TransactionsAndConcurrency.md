@@ -88,4 +88,59 @@ A transaction ends in one of two ways:
 ## conflicting operations
 1. The operations are from different transactions
 2. Both operations operate on the same resource
-3. At least one operation is a write
+3. At least one operation is a write. 
+
+
+## locking
+locking ensures isolation. it ensures that dbms is able to interleave transactions while guaranteeing isolation. 
+
+locking is what allow transaction to read or write to the same resource. transaction that read data from resource**A**, need to ensure that the data in **A** is not changed by other transaction.  
+
+So a transaction that wants to read data will ask for a Shared (S) lock on the appropriate resource, and a transaction that wants to write data will ask for an Exclusive (X) lock on the appropriate resource.  
+
+only one transaction can have a (X) lock on a resource. but many transactions can have a (S) lock on a resource.
+
+## Two Phase Locking
+Transactions must obtain a S (shared) lock before reading, and an X (exclusive) lock beforewriting.
+
+Transactions  cannot  get  new  locks  after  releasing  any  locks  –  this  is  the  key  to  enforcing serializability through locking! 
+
+### Strict two phase locking 
+- ensure that all locks are released together when a transaction is completed, preventing cascading aborts.
+
+
+## Lock Manager
+- granted set: names of resources beaing locked. the transcaction that has the lock on the resource.
+- mode: locke type.
+- wait queue: list of requests that are waiting for the lock that conflict with the locks that have already been granted.
+
+
+
+When a lock request arrives, the Lock Manager checks if any Xact in the Granted Set or in theWait Queue want a conflicting lock.  If so, the requester gets put into the Wait Queue.  If not, thenthe requester is granted the lock and put into the Granted Set.
+
+In addition, Xacts can request a lock upgrade:  this is when a Xact with shared lock can request toupgrade to exclusive.  The Lock Manager will add this upgrade request at the front of the queue.
+![](./img/db52.png) 
+
+
+## Deadlock
+
+We now have a lock manager that will put requesters into the Wait Queue if there are conflicting locks.  But what happens if T1 and T2 both holdSlocks on a resource and they both try upgradetoX? T1 will wait for T2 to release the S lock so that it can get an Xlock while T2 will wait for T1 to release theSit can get an Xlock.  
+
+At this point, neither transaction will be able to get the Xlock because they’re waiting on each other!  This is called adeadlock, a cycle of Xacts waitingfor locks to be released by each other.
+
+### Deadlock avoidance
+assign a priority to each transaction by age now - start time. if Ti want an lock that Tj have, there will be two options: 
+
+```ruby 
+Ti > Tj ? Ti waits for Tj : Tj aborts 
+Ti > Tj ? Ti aborts : Tj waits for Ti 
+``` 
+![](./img/db53.png) 
+
+### Deadlock detection 
+
+We caninstead try detecting deadlocks and then if we find a deadlock, we abort one of the transactions inthe deadlock so the other transactions can continue. 
+
+- edge from Ti to Tj is a deadlock if Ti and Tj have a conflict lock on the same resource. 
+- in figure T1 try to a lock on B. when T2 have conflicting lock on B.
+![](./img/db54.png)
