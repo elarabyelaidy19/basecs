@@ -139,8 +139,20 @@ Ti > Tj ? Ti aborts : Tj waits for Ti
 
 ### Deadlock detection 
 
-We caninstead try detecting deadlocks and then if we find a deadlock, we abort one of the transactions inthe deadlock so the other transactions can continue. 
+We can instead try detecting deadlocks and then if we find a deadlock, we abort one of the transactions in the deadlock so the other transactions can continue. 
+
+We will periodically check for cycles in a graph which indicates a deadlock.  If a cycle is found - wewill ”shoot” a Xact in the cycle.
 
 - edge from Ti to Tj is a deadlock if Ti and Tj have a conflict lock on the same resource. 
 - in figure T1 try to a lock on B. when T2 have conflicting lock on B.
-![](./img/db54.png)
+![](./img/db54.png) 
+
+## Lock Granularity
+concerns about granularity of locks. what actullay lock. tuples, rows, columns, or entire tables. or maybe even entire databases. 
+
+Remember  that  when  we  place  a  lock  on  a  node,  we  implicitly  lock  all  of  its  children  as  well. it allows us to place locks at different levels ofthe tree. 
+
+- fine granularity: locks lower on tree allow higher concurrency, lots of locks(overhead). 
+- coarse granularity: locks higher on tree allow lower concurrency, few locks(no overhead).
+
+![](./img/db55.png)
