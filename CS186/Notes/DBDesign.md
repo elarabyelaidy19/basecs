@@ -24,7 +24,7 @@ what the user see when querying the data base
 defines the logical structure of the data base
 - ### Physical Schema
 describes the files and indexes of the data base 
-
+s
 ## Data Independence
 isilate apps from the structure of the data base. 
 ### Logical Data Independence: 
