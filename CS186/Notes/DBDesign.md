@@ -33,3 +33,13 @@ Maintains the same views when the logical structure of the data base changes.
 Maintains the Logical Structure when the physical structure of the data base changes. 
 
 we need to make sure that the data base is independent from the application. because the environment that incupates the database is changing.
+
+
+<b> 
+Integrity constraints can be referd to business rules.
+</b>
+
+# ER Model 
+
+- **Entity**: real world object described by set of attributes. 
+- **Entity set**: collection of entities that share the same attributes.
