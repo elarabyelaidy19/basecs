@@ -38,9 +38,45 @@ FROM Scores S,
 WHERE S.score <= S2.score 
 GROUP BY S.id
 ORDER BY S.score 
-/* */ 
-/* */ 
-/* */ 
+
+
+/* return bonus of emp if his odd and not start with M */  
+
+SELECT employee_id, if(employee_id % 2 = 1 and name not like 'M%', salary, 0 ) as bonus 
+from Employees 
+
+
+SELECT employee_id, 
+CASE 
+    WHEN employee_id % 2 = 1 and name not like 'M%' THEN salary 
+    ELSE 0 
+END AS bonus
+from  Employee 
+ORDER BY employee_id 
+
+
+/* updat gender from f to m and vise versa */ 
+UPDATE Salary
+SET sex = if(sex = 'm', 'f', 'm'); 
+
+
+UPDATE Salary 
+SET sex  =  
+        CASE 
+            WHEN sex = 'm' THEN 'f' 
+            else  'm' 
+        end;  
+
+ 
+
+
+/* delete all duplicates emails keeping only ones with smallest Id */  
+DELETE p1 FROM person, Person p2 
+WHERE p1.email = p2.email and p1.id > p2.id 
+
+
+
+
 /* */ 
 /* */ 
 /* */ 
