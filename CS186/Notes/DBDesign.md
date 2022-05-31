@@ -42,4 +42,6 @@ Integrity constraints can be referd to business rules.
 # ER Model 
 
 - **Entity**: real world object described by set of attributes. 
-- **Entity set**: collection of entities that share the same attributes.
+- **Entity set**: collection of entities that share the same attributes. 
+- **Relationship**: relationship between two entity sets.
+- **Weak entity**: can be identified in term of another entity.
