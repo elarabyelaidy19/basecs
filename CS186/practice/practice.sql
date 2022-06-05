@@ -76,9 +76,24 @@ WHERE p1.email = p2.email and p1.id > p2.id
 
 
 
+/* campitalize first letter and lower rest of the name */ 
 
-/* */ 
-/* */ 
-/* */ 
+SELECT user_id, concat(upper(substr(name, 1, 1)), lower(substr(name, 2))) as name 
+FROM User
+ORDER BY user_id
+
+/*Write an SQL query to find for each date the number of different products sold and their names. */ 
+
+SELECT sell_date, COUNT(DISTINCT product) as num_sold, GROUP_CONCAT(DISTINCT product ORDER BY product) as products 
+FROM activities 
+GROUP BY sell_date 
+ORDER BY sell_date
+
+/* complete a reports for patients that have DIAB1 in  there conditions */ 
+select patient_id, patient_name, conditions 
+from Patients 
+where conditions REGEXP '\\bDIAB1' 
+
+
 /* */ 
 
