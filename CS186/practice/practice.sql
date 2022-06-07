@@ -127,7 +127,12 @@ select id, 'Leaf' as type from tree where id not in (select distinct p_id from t
 union 
 select id, 'Inner' as type from tree where id in (select distinct p_id from tree where p_id is not null) and p_id is not null 
 
-/* */
+/* Second Max Salary */ 
+
+SELECT MAX(salary) as secondMaxSalary 
+FROM employee 
+WHERE salary < (SELECT max(salary) from employee)  
+
 /* */
 
 
