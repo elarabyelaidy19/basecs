@@ -25,7 +25,8 @@ FROM (students Inner JOIN grades ON students.id = grades.student_id) JOIN course
 ORDER BY students.name, course, grades.grade  
 
 
-SELECT CASE students.name when Length(students.name) = 8 then stuff(students.name, 7, 1, '000') 
+SELECT CASE students.name = 
+              when Length(students.name) = 8 then stuff(students.name, 7, 1, '000') 
                WHEN Length(students.name) = 9 then stuff(students.name, 7, 1, '00') 
                WHEN Length(students.name) = 10 then stuff(students.name, 7, 1, '0') 
                ELSE students.name end as name), courses.name as course, grades.grade as grade 

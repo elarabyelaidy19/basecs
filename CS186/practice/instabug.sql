@@ -52,5 +52,3 @@ SELECT DISTINCT title from bugs group by category
 
 /* 6 */ 
 
-
-get the name of the most popular course (the one where the most students are enrolled) and if there is a tie, get the course that's lexicographically the smallest. 

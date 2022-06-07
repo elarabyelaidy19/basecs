@@ -16,6 +16,3 @@ get the name of the most popular course (the one where the most students are enr
 
 
 
-
-# Auth token 
-e06932a8034848be4ef9a9112f5d67a9 

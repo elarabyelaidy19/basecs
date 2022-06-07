@@ -95,5 +95,41 @@ from Patients
 where conditions REGEXP '\\bDIAB1' 
 
 
-/* */ 
+/* report with employees with missing data name and salaries*/ 
+
+select employee_id  
+from employees  
+where employee_id not in (select employee_id from salaries)
+
+union 
+
+select employee_id 
+from salaries 
+where employee_id not in (select employee_id from employees)
+
+
+order by employee_id  
+
+
+/* report products */ 
+
+select product_id, 'store1' as store, store1 as price from products where store1 is not null 
+union 
+select product_id, 'store2' as store, store2 as price from products where store2 is not null  
+union 
+select product_id, 'store3' as store, store3 as price from products where store3 is not null  
+
+/* tree calssifid */ 
+
+select id, 'Root' as type from tree where p_id is null 
+union 
+select id, 'Leaf' as type from tree where id not in (select distinct p_id from tree where p_id is not null) and p_id is not null  
+union 
+select id, 'Inner' as type from tree where id in (select distinct p_id from tree where p_id is not null) and p_id is not null 
+
+/* */
+/* */
+
+
+
 
