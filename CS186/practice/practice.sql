@@ -133,8 +133,36 @@ SELECT MAX(salary) as secondMaxSalary
 FROM employee 
 WHERE salary < (SELECT max(salary) from employee)  
 
+/* find dates id where temper of day greater than it's previous day*/
+/* date if  return differnce in days between two dates */
+select weather.id as id 
+from weather join weather w on DATEDIFf(weather.recorddate, w.recorddate) = 1 
+    and weather.Temperature > w.Temperature
+
+
+/* sales person not have any order of company 'RED' */ 
+select salesperson.name 
+from salesperson 
+where salesperson.sales_id not in
+(select p.sales_id
+from salesperson p join orders o on p.sales_id = o.sales_id join company c on o.com_id = c.com_id 
+where c.name = 'RED') 
+
+
+
+/* */ 
+
+/* */
+
 /* */
 
 
+/* */
+
+
+/* */
+
+
+/* */
 
 
