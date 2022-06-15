@@ -120,7 +120,6 @@ union
 select product_id, 'store3' as store, store3 as price from products where store3 is not null  
 
 /* tree calssifid */ 
-
 select id, 'Root' as type from tree where p_id is null 
 union 
 select id, 'Leaf' as type from tree where id not in (select distinct p_id from tree where p_id is not null) and p_id is not null  
