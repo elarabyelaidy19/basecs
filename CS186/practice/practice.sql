@@ -176,9 +176,37 @@ group by customer_number
 order by count(*) desc
 limit 1
 
+/* find first customer login */ 
+select player_id, min(event_date) as first_login 
+from activity 
+group by player_id
+
+
+/* latetst login in 2020 */
+
+select user_id, max(time_stamp) as last_stamp 
+from Logins 
+where year(time_stamp) = 2020 
+group by user_id
+
+
+/* find total time spent by each employee */
+
+select event_day as day, emp_id, sum(out_time-in_time) As total_time  
+from Employees
+Group By emp_id, event_day 
+
 /* */
 
 
+
 /* */
 
+
+
+/* */
+
+
+
+/* */
 
