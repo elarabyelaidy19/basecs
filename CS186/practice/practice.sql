@@ -161,11 +161,20 @@ select date_id, make_name, count(distinct lead_id) as unique_leads, count(distin
 from DailySales 
 group by 1,2 
 
-/* */
+/* number of followers fro each user */ 
+select user_id, count(distinct follower_id) as followers_count 
+from followers 
+group by user_id
 
 
-/* */
 
+/* customer with the max nums of orders */
+
+select customer_number 
+from orders 
+group by customer_number 
+order by count(*) desc
+limit 1
 
 /* */
 
