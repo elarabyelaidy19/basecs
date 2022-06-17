@@ -194,9 +194,17 @@ select event_day as day, emp_id, sum(out_time-in_time) As total_time
 from Employees
 Group By emp_id, event_day 
 
-/* */
 
+/* Capital gain loss */
 
+select stock_name, sum( 
+    case
+        when operation = 'Buy' then -price 
+        else price 
+    end 
+) as capital_gain_loss
+from stocks 
+group by stock_name
 
 /* */
 
