@@ -213,9 +213,16 @@ from users u left join rides r on u.id = r.user_id
 group by r.user_id 
 order by travelled_distance desc, name
 
-/* */
+/* the joining date */
 
-
+SELECT u.user_id AS buyer_id, join_date, 
+IFNULL(COUNT(order_date), 0) AS orders_in_2019 
+FROM Users as u
+LEFT JOIN
+Orders as o
+ON u.user_id = o.buyer_id
+AND YEAR(order_date) = '2019'
+GROUP BY u.user_id
 
 /* */
 
