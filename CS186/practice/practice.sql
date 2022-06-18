@@ -224,5 +224,21 @@ ON u.user_id = o.buyer_id
 AND YEAR(order_date) = '2019'
 GROUP BY u.user_id
 
+/* report duplcates emails */
+
+select email 
+from person 
+group by email 
+having count(email) > 1
+
+/* */
+
+
+/* */
+
+
+/* */
+
+
 /* */
 
