@@ -87,4 +87,7 @@ LIMIT
 SELECT breed, COUNT(*) 
 from dogs
 GROUP BY breed
-HAVING COUNT(*) > 1
+HAVING COUNT(*) > 1 
+
+
+

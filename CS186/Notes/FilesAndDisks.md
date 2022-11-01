@@ -13,8 +13,8 @@
 ## Block Level Storage
 - Read and write large chunks of data sequnetially. 
 - maximize use of data 
-    - cach popularly used data in memory.
-    - pre-fetch data likely to be accessd data. 
+    - cache popularly used data in memory.
+    - pre-fetch data likely to be accessed data. 
     - Buffer write to sequential blocks.
 - Block is a unit of transfer data between disk and memory.
 - page when in RAM. Block when in disk. 
@@ -23,8 +23,8 @@
 - manage space on Disks, map pages to locations on disk. 
 - load pages from disk to memory. 
 - save pages again to disk.
-- read/write, allocate/deakkocate logical pages. 
-- mplementation 
+- read/write, allocate/deallocate logical pages. 
+- implementation 
     -  talk to storage devise directly.
     - run our own over file system
 
