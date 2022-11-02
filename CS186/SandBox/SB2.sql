@@ -34,3 +34,8 @@ SELECT DISTINCT renatal.id
 FROM rentals
 where time(rentals.rental_date) = '2005-07-05'
 
+SELECT true 
+where 'Alfy Jorge' LIKE '%Jorge'
+
+
+SELECT first_name from person WHERE last_name similar to '%Stuck|Epp%';
