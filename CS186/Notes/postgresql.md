@@ -22,3 +22,8 @@ psql -h localhost -p 5432 -U elaraby databsename
 ## Notes 
 - `bigserial` is a data type that is a combination of serial and bigint, it's an auto incrementing integer that can hold a very large number. 
 - use mockaroo to generate fake data. export as .sql file and run it in psql. 
+
+
+## Views 
+- is a subset of database based on a query from one or more tables. saved in the database as named query 'virtual table' and can be used frequently.
+- 
